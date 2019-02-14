@@ -81,6 +81,7 @@
   This is a drawback, because this method can be used only for images with few objects and the maximum number of objects has to be known apriori.
 * Their experiments suggest that the task of object counting may be used as a surrogate for finding good representations for new tasks. 
 > Classical regression functions are prone to errors when the input is high dimensional.  
+
 ![counting_as_classification_problem_weakly_supervised_2015](./images/counting_as_classification_problem_weakly_supervised_2015.png)
 
 
@@ -125,7 +126,7 @@
 * images of tankers, commercial and fishing ships of various shapes and sizes;
 * some images do not contain ships, but those that do may contain multiple ships;
 * ground truth: oriented bounding boxes around the ships.  
-![airbus_ship_detection_dataset](./images/airbus_ship_detection_dataset)
+![airbus_ship_detection_dataset](./images/airbus_ship_detection_dataset.png)
 
 
 ## NOAA Fisheries Steller Sea Lion Population Dataset
