@@ -15,7 +15,11 @@
 
 4. __Unsupervised learning__
     - Perform grouping based on self-similarities or motion similarities. No ground truth (labels) for objects of interest.
-	
+
+__Evaluation metrics:__
+* __*MAE*__ - Mean Absolute Error;
+* __*RMSE*__ - Root Mean Squared Error;	
+
 # Papers related to counting
 
 ## [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](https://arxiv.org/abs/1811.00472)
@@ -39,12 +43,16 @@
 ## [Improving Object Counting with Heatmap Regulation (Shubhra Aich and Ian Stavness, 2018)](https://arxiv.org/abs/1803.05494)
 *
 * 
+* 
 
 
 ## [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh, Yen-Liang Lin and Winston H. Hsu, 2017)](https://arxiv.org/abs/1707.05972)
-* 
-* 
-* 
+* They leverage the spatial layout information (e.g., cars often park regularly) and introduce these spatially regularized constraints into their network to improve the localization accuracy.
+* The spatial layout information can be used to improve results of object counting tasks with regularized structures.
+* They created the largest (in 2017) drone view dataset CARPK and modified PUCPR dataset to PUCPR+, which can be used for counting tasks.
+> The regression-based methods can not generate precise object positions.  
+
+![layout_proposal_network_2017](./images/layout_proposal_network_2017.png)
 
 
 ## [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Genevieve Boucher, Craig A. Glastonbury, Henry Z. Lo and Yoshua Bengio, 2017)](https://arxiv.org/abs/1703.08710)
@@ -52,7 +60,7 @@
   The idea is to predict a count map which contains redundant counts based on the receptive field of a regression network.
 * They also propose a new deep neural network for counting: Count-ception (adapted from the Inception family of networks).
 * Their approach results in a improvement (2.9 to 2.3 MAE) over the state of the art method by Xie and Zisserman in 2016.
-* Comparison with density map approach (_Learning to count objects in images, (Lempitsky, 2015)_):
+* Comparison with density map approach (_Learning to count objects in images (Lempitsky, 2015)_):
   - Using Gaussian density map forces the model to predict specific values on how far the object is from the center of the receptive field.
     This is a harder task than just predicting the existence of the object in the receptive field.
   - Redundant counts method is explicitly designed to tolerate the errors when predictions are made (summation over the output of the model).
@@ -65,7 +73,7 @@
     Strides add a modulus to the calculation of the count map size.
   - _BatchNorm_ after every convolution.
   - _L1 loss_.  
-![count_ception](./images/count_ception.png)
+![count_ception_2017](./images/count_ception_2017.png)
   
 
 ## [Microscopy cell counting and detection with fully convolutional regression networks (Weidi Xie, J. Alison Noble and Andrew Zisserman, 2016)](http://www.robots.ox.ac.uk/~vgg/publications/2016/Xie16/xie16.pdf)
@@ -146,9 +154,22 @@
 
 
 ## CARPK
-*
-*
-*
+* https://lafi.github.io/LPN/
+* 1448 images (1280x720) (989 for train, 459 for test) of cars captured from different parking lots;
+* 90,000 cars;
+* maximum number of cars in a single scene: 188;
+* ground truth: bounding boxes.
+![carpk_dataset](./images/carpk_dataset.png)
+
+
+## PUCPR+
+* https://lafi.github.io/LPN/
+* modified annotations of PUCPR (initial dataset);
+* 125 images (1280x720) (100 for train, 25 for test) of cars captured from a single parking lot, using fixed camera sensors that are placed in the same place;
+* 17,000 cars;
+* maximum number of cars in a single scene: 331;
+* ground truth: bounding boxes.
+![pucpr_plus_dataset](./images/pucpr_plus_dataset.png)
 
 
 ## Pedestrian counting datasets
