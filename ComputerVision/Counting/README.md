@@ -33,9 +33,18 @@ __Applications:__
 # Papers related to counting
 
 ## [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](https://arxiv.org/abs/1811.00472)
-* 
-* 
-* 
+* The authors recast object counting as a matching problem.
+* They develop a Generic Matching Network (GMN) that learns a discriminative classifier to match instances of a given exemplar.
+* The GMN acts as an excellent initialization for counting objects from unseen domains.
+* They make use of detection video data to create a model (GMN) that can flexibly adapt to various domains, which is a form of few-shot learning.
+* Observations:
+  - matching within an image can be thought of as tracking within an image;
+  - videos can be a natural data source for learning self-similarity;
+  - object counting can have challenging appearance changes:
+    * large degrees of rotation;
+    * intra-class variation (in the case of cars, both color and shape);  
+  
+![gmn_2018](./images/gmn_2018.png)
 
 ## [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li, Xiaofan Zhang and Deming Chen, 2018)](https://arxiv.org/abs/1802.10062)
 * 
@@ -66,6 +75,12 @@ __Applications:__
 ![object_counting_with_hr_2018](./images/object_counting_with_hr_2018.png)
 
 
+## [People, Penguins and Petri Dishes: Adapting Object Counting Models To New Visual Domains And Object Types Without Forgetting (Mark Marsden _et al._, 2017)](https://arxiv.org/abs/1711.05586)
+* 
+* 
+* 
+
+
 ## [Generating High-Quality Crowd Density Maps using Contextual Pyramid CNNs (Vishwanath A. Sindagi and Vishal M. Patel, 2017)](https://arxiv.org/abs/1708.00953)
 * 
 * 
@@ -77,7 +92,7 @@ __Applications:__
 * The spatial layout information can be used to improve results of object counting tasks with regularized structures.
 * They created the largest (in 2017) drone view dataset CARPK and modified PUCPR dataset to PUCPR+, which can be used for counting tasks.
 > The regression-based methods can not generate precise object positions.  
-
+  
 ![layout_proposal_network_2017](./images/layout_proposal_network_2017.png)
 
 
@@ -125,11 +140,11 @@ __Applications:__
   This is a drawback, because this method can be used only for images with few objects and the maximum number of objects has to be known apriori.
 * Their experiments suggest that the task of object counting may be used as a surrogate for finding good representations for new tasks. 
 > Classical regression functions are prone to errors when the input is high dimensional.  
-
+  
 ![counting_as_classification_problem_weakly_supervised_2015](./images/counting_as_classification_problem_weakly_supervised_2015.png)
 
 
-## [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo _et. al_, 2015)](http://agamenon.tsc.uah.es/Personales/rlopez/docs/ibpria2015-guerrero.pdf)
+## [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo _et al._, 2015)](http://agamenon.tsc.uah.es/Personales/rlopez/docs/ibpria2015-guerrero.pdf)
 * 
 *
 * 
@@ -178,7 +193,7 @@ __Applications:__
 ## Inria Aerial Image Labeling Dataset
 * https://project.inria.fr/aerialimagelabeling/
 * 180 tiff images (5000x5000) with ground truth (for 5 cities).
-* ground truth: segmentation maps for buildings.
+* ground truth: segmentation maps for buildings.  
 ![inria_aerial_dataset](./images/inria_aerial_dataset.png)
 
 
@@ -188,7 +203,7 @@ __Applications:__
 * 150,000 jpeg images (768x768) extracted from satellite imagery;
 * images of tankers, commercial and fishing ships of various shapes and sizes;
 * some images do not contain ships, but those that do may contain multiple ships;
-* ground truth: oriented bounding boxes around the ships.
+* ground truth: oriented bounding boxes around the ships.  
 ![airbus_ship_detection_dataset](./images/airbus_ship_detection_dataset.png)
 
 
@@ -196,7 +211,7 @@ __Applications:__
 * https://www.kaggle.com/c/noaa-fisheries-steller-sea-lion-population-count/data
 * 96 GB;
 * aerial images of sea lions;
-* ground truth: colored dots over the animals.
+* ground truth: colored dots over the animals.  
 ![sea_lion_population_dataset](./images/sea_lion_population_dataset.png)
 
 
@@ -205,7 +220,7 @@ __Applications:__
 * a synthetic dataset;
 * 200 png images (256x256) containing simulated bacterial cells from fluorescence-light microscopy;
 * each image contains 174 +- 64 cells which overlap;
-* ground truth: dot annotations.
+* ground truth: dot annotations.  
 ![vgg_cells_dataset](./images/vgg_cells_dataset.png)
 
 
@@ -214,7 +229,7 @@ __Applications:__
 * 1448 images (720x1280) (989 for train, 459 for test) of cars captured from different parking lots;
 * 90,000 cars;
 * maximum number of cars in a single scene: 188;
-* ground truth: bounding boxes.
+* ground truth: bounding boxes.  
 ![carpk_dataset](./images/carpk_dataset.png)
 
 
@@ -224,7 +239,7 @@ __Applications:__
 * 125 images (720x1280) (100 for train, 25 for test) of cars captured from a single parking lot, using fixed camera sensors that are placed in the same place;
 * 17,000 cars;
 * maximum number of cars in a single scene: 331;
-* ground truth: bounding boxes.
+* ground truth: bounding boxes.  
 ![pucpr_plus_dataset](./images/pucpr_plus_dataset.png)
 
 
@@ -234,7 +249,7 @@ __Applications:__
 * 1,244 (480x640) images;
 * 46,796 annotated vehicles;
 * remark: motorcycles are also annotated;
-* ground truth: dot annotations and masks that define regions of interest used for evaluation.
+* ground truth: dot annotations and masks that define regions of interest used for evaluation.  
 ![trancos_dataset](./images/trancos_dataset.png)
 
 
