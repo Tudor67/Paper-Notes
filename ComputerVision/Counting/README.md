@@ -1,4 +1,34 @@
 # Counting
+1. [Counting approaches](#counting-approaches)
+2. [Evaluation metrics](#evaluation-metrics)
+3. [Applications](#applications)
+4. [Papers related to counting](#papers-related-to-counting)
+    - [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](#class-agnostic-counting-erika-lu-weidi-xie-and-andrew-zisserman-2018)
+    - [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li et al., 2018)](#csrnet-dilated-convolutional-neural-networks-for-understanding-the-highly-congested-scenes-yuhong-li-xiaofan-zhang-and-deming-chen-2018)
+    - [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](#object-counting-with-small-datasets-of-large-images-shubhra-aich-and-ian-stavness-2018)
+    - [Learning Short-Cut Connections for Object Counting (Daniel Oñoro-Rubio et al., 2018)](#learning-short-cut-connections-for-object-counting-daniel-oñoro-rubio-mathias-niepert-and-roberto-j-lópez-sastre-2018)
+    - [Improving Object Counting with Heatmap Regulation (Shubhra Aich and Ian Stavness, 2018)](#improving-object-counting-with-heatmap-regulation-shubhra-aich-and-ian-stavness-2018)
+    - [People, Penguins and Petri Dishes: Adapting Object Counting Models To New Visual Domains And Object Types Without Forgetting (Mark Marsden et al., 2017)](#people-penguins-and-petri-dishes-adapting-object-counting-models-to-new-visual-domains-and-object-types-without-forgetting-mark-marsden-et-al-2017)
+    - [Generating High-Quality Crowd Density Maps using Contextual Pyramid CNNs (Vishwanath A. Sindagi and Vishal M. Patel, 2017)](#generating-high-quality-crowd-density-maps-using-contextual-pyramid-cnns-vishwanath-a-sindagi-and-vishal-m-patel-2017)
+    - [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh et al., 2017)](#drone-based-object-counting-by-spatially-regularized-regional-proposal-network-meng-ru-hsieh-yen-liang-lin-and-winston-h-hsu-2017)
+    - [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Yoshua Bengio et al., 2017)](#count-ception-counting-by-fully-convolutional-redundant-counting-joseph-paul-cohen-genevieve-boucher-craig-a-glastonbury-henry-z-lo-and-yoshua-bengio-2017)
+    - [Microscopy cell counting and detection with fully convolutional regression networks (Weidi Xie, J. Alison Noble and Andrew Zisserman, 2016)](#microscopy-cell-counting-and-detection-with-fully-convolutional-regression-networks-weidi-xie-j-alison-noble-and-andrew-zisserman-2016)
+    - [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan et al., 2016)](#crowdnet-a-deep-convolutional-network-for-dense-crowd-counting-lokesh-boominathan-srinivas-s-s-kruthiventi-r-venkatesh-babu-2016)
+    - [Learning to count with deep object features (Santi Seguí, Oriol Pujol and Jordi Vitrià, 2015)](#learning-to-count-with-deep-object-features-santi-seguí-oriol-pujol-and-jordi-vitrià-2015)
+    - [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo et al., 2015)](#extremely-overlapping-vehicle-counting-ricardo-guerrero-gomez-olmedo-et-al-2015)
+    - [Learning To Count Objects in Images (Victor Lempitsky and Andrew Zisserman, 2010)](#learning-to-count-objects-in-images-victor-lempitsky-and-andrew-zisserman-2010)
+    - [Detecting, localizing and grouping repeated scene elements from an image (Leung, T., Malik, J., 1996)](#detecting-localizing-and-grouping-repeated-scene-elements-from-an-image-leung-t-malik-j-1996)
+5. [Datasets related to counting](#datasets-related-to-counting)
+    - [Inria Aerial Image Labeling Dataset](#inria-aerial-image-labeling-dataset)
+    - [Airbus Ship Detection Dataset](#airbus-ship-detection-dataset)
+    - [NOAA Fisheries Steller Sea Lion Population Dataset](#noaa-fisheries-steller-sea-lion-population-dataset)
+    - [VGG Cells Dataset](#vgg-cells-dataset)
+    - [CARPK](#carpk)
+    - [PUCPR+](#pucpr)
+    - [TRANCOS](#trancos)
+    - [Pedestrian Counting Datasets](#pedestrian-counting-datasets)
+
+# Counting approaches
 1. __Supervised learning__
 	- In the supervised case we know the location of the objects we learn to count.
 	  I mean that the ground truth contains bounding boxes, dots or segmentation maps for objects of interest.
@@ -16,7 +46,7 @@
 4. __Unsupervised learning__
     - Perform grouping based on self-similarities or motion similarities. No ground truth (labels) for objects of interest.
 
-__Evaluation metrics:__
+# Evaluation metrics
 * __*MAE*__ - Mean Absolute Error;
 * __*RMSE*__ - Root Mean Squared Error;	
 * __%U__ - Underestimate;
@@ -26,7 +56,7 @@ __Evaluation metrics:__
                 and compute MAE in each of these subregions);  
 ![evaluation_metrics](./images/evaluation_metrics.png)
 
-__Applications:__
+# Applications
 * Medicine: determine the quantity of red blood cells and white blood cells to infer the health of a patient;
 * Biology: compute the cell concentration in molecular biology to adjust the amount of chemicals to be applied in an experiment;
 * Surveillance: investigate crowds in different regions of a city;
@@ -34,7 +64,6 @@ __Applications:__
 * Other applications: counting plants, trees, buildings from aerial images.
 
 # Papers related to counting
-
 ## [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](https://arxiv.org/abs/1811.00472)
 * The authors recast object counting as a matching problem.
 * They develop a Generic Matching Network (GMN) that learns a discriminative classifier to match instances of a given exemplar.
