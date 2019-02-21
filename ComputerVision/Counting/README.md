@@ -22,13 +22,16 @@ __Evaluation metrics:__
 * __%U__ - Underestimate;
 * __%O__ - Overestimate;
 * __%D__ - Difference;
-* __GAME__ - Grid Average Mean absolute Error;
+* __GAME(L)__ - Grid Average Mean absolute Error (subdivide the image in 4L non-overlapping regions,
+                and compute MAE in each of these subregions);  
+![evaluation_metrics](./images/evaluation_metrics.png)
 
 __Applications:__
 * Medicine: determine the quantity of red blood cells and white blood cells to infer the health of a patient;
 * Biology: compute the cell concentration in molecular biology to adjust the amount of chemicals to be applied in an experiment;
 * Surveillance: investigate crowds in different regions of a city;
-* Monitoring: count vehicles in a traffic jam.
+* Monitoring: count vehicles in a traffic jam;
+* Other applications: counting plants, trees, buildings from aerial images.
 
 # Papers related to counting
 
@@ -53,9 +56,15 @@ __Applications:__
 
 
 ## [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](https://arxiv.org/abs/1805.11123)
-* 
-* 
-* 
+* One-look regression model for counting: Conv layers + FC/GAP/GSP layers + FC1 (a scalar count).
+* The main idea of the one-look regression models for object counting is to utilize weak ground truth information like object counts in the images.
+* The authors introduce GSP (Global Sum Pooling) operation as a replacement of GAP (Global Average Pooling) or FC layers.
+* They say that _GSP_ exhibits the non-trivial property of _generalization for counting objects over variable input shapes_, which GAP does not.
+* GSP helps to generate more localized activations on object regions (in their experiments, on 4 datasets) just when the model 
+is trained with small sub-regions of the images. 
+* When training with full-resolution images, both GAP and GSP models result in a less uniform distribution of activation among object regions
+and less localized activations inside object regions as compared to the GSP model trained with smaller patches.  
+![gsp_2018](./images/gsp_2018.png)
 
 
 ## [Learning Short-Cut Connections for Object Counting (Daniel Oñoro-Rubio, Mathias Niepert and Roberto J. López-Sastre, 2018)](https://arxiv.org/abs/1805.02919)
@@ -101,7 +110,7 @@ __Applications:__
   The idea is to predict a count map which contains redundant counts based on the receptive field of a regression network.
 * They also propose a new deep neural network for counting: Count-ception (adapted from the Inception family of networks).
 * The Inception-like architecture allows them to obtain multi-scale feature representations and the small input size 32x32 prevents overfitting.
-* Their approach results in a improvement (2.9 to 2.3 MAE) over the state of the art method by Xie and Zisserman in 2016.
+* Their approach results in an improvement (2.9 to 2.3 MAE) over the state-of-the-art method by Xie and Zisserman in 2016.
 * Comparison with density map approach (_Learning to count objects in images (Lempitsky, 2015)_):
   - Using Gaussian density map forces the model to predict specific values on how far the object is from the center of the receptive field.
     This is a harder task than just predicting the existence of the object in the receptive field.
@@ -133,11 +142,17 @@ __Applications:__
 ![fcrns_inverting_feature_representations_2016](./images/fcrns_inverting_feature_representations_2016.png)
 
 
+## [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan, Srinivas S S Kruthiventi, R. Venkatesh Babu, 2016)](https://arxiv.org/abs/1608.06197)
+* CrowdNet uses the combination of shallow and deep networks to acquire multi-scale information in density map approximation for crowd counting.
+* 
+* 
+
+
 ## [Learning to count with deep object features (Santi Seguí, Oriol Pujol and Jordi Vitrià, 2015)](https://arxiv.org/abs/1505.08082)
 * Different from other approaches, the authors don't give any hint on the object they are counting besides the occurrence multiplicity.
   They follow a weakly supervised approach for object counting.
-* They cast the object counting to a classification problem (CNN layers + FC layers) where the final FC layer has a fixed size: the maximum number of objects in a image.
-  This is a drawback, because this method can be used only for images with few objects and the maximum number of objects has to be known apriori.
+* They cast the object counting to a classification problem (Conv layers + FC layers) where the final FC layer has a fixed size: the maximum number of objects in an image.
+  This is a drawback, because this method can be used only for images with few objects and the maximum number of objects has to be known a priori.
 * Their experiments suggest that the task of object counting may be used as a surrogate for finding good representations for new tasks. 
 > Classical regression functions are prone to errors when the input is high dimensional.  
   
@@ -176,7 +191,7 @@ __Applications:__
 
 
 ## [Detecting, localizing and grouping repeated scene elements from an image (Leung, T., Malik, J., 1996)](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.36.2193&rep=rep1&type=pdf)
-* A unsupervised approach for detecting and grouping repeated scene elements in an image.
+* An unsupervised approach for detecting and grouping repeated scene elements in an image.
 * Their method can be seen like tracking an element to spatially neighboring locations in one image.
 * Pipeline:
     1. _Detection of interesting windows_ (distinctive elements - possible candidates for the repeating elements) in the image.
