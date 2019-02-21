@@ -22,7 +22,7 @@ __Evaluation metrics:__
 * __%U__ - Underestimate;
 * __%O__ - Overestimate;
 * __%D__ - Difference;
-* __GAME(L)__ - Grid Average Mean absolute Error (subdivide the image in 4L non-overlapping regions,
+* __GAME(L)__ - Grid Average Mean absolute Error (subdivide the image in 4^L non-overlapping regions,
                 and compute MAE in each of these subregions);  
 ![evaluation_metrics](./images/evaluation_metrics.png)
 
@@ -59,11 +59,10 @@ __Applications:__
 * One-look regression model for counting: Conv layers + FC/GAP/GSP layers + FC1 (a scalar count).
 * The main idea of the one-look regression models for object counting is to utilize weak ground truth information like object counts in the images.
 * The authors introduce GSP (Global Sum Pooling) operation as a replacement of GAP (Global Average Pooling) or FC layers.
-* They say that _GSP_ exhibits the non-trivial property of _generalization for counting objects over variable input shapes_, which GAP does not.
+* They show that GSP exhibits the non-trivial property of generalization for counting objects over variable input shapes, which GAP does not.
 * GSP helps to generate more localized activations on object regions (in their experiments, on 4 datasets) just when the model 
 is trained with small sub-regions of the images. 
-* When training with full-resolution images, both GAP and GSP models result in a less uniform distribution of activation among object regions
-and less localized activations inside object regions as compared to the GSP model trained with smaller patches.  
+* When training with full-resolution images, both GAP and GSP models result in a less uniform distribution of activation among object regions and less localized activations inside object regions as compared to the GSP model trained with smaller patches.  
 ![gsp_2018](./images/gsp_2018.png)
 
 
