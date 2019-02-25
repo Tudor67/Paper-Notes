@@ -2,7 +2,8 @@
 1. [Counting approaches](#counting-approaches)
 2. [Evaluation metrics](#evaluation-metrics)
 3. [Applications](#applications)
-4. [Papers related to counting](#papers-related-to-counting)
+4. [Challenges for vision-based object counting](#challenges-for-vision-based-object-counting)
+5. [Papers related to counting](#papers-related-to-counting)
     - [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](#class-agnostic-counting-erika-lu-weidi-xie-and-andrew-zisserman-2018)
     - [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li et al., 2018)](#csrnet-dilated-convolutional-neural-networks-for-understanding-the-highly-congested-scenes-yuhong-li-xiaofan-zhang-and-deming-chen-2018)
     - [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](#object-counting-with-small-datasets-of-large-images-shubhra-aich-and-ian-stavness-2018)
@@ -13,12 +14,13 @@
     - [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh et al., 2017)](#drone-based-object-counting-by-spatially-regularized-regional-proposal-network-meng-ru-hsieh-yen-liang-lin-and-winston-h-hsu-2017)
     - [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Yoshua Bengio et al., 2017)](#count-ception-counting-by-fully-convolutional-redundant-counting-joseph-paul-cohen-genevieve-boucher-craig-a-glastonbury-henry-z-lo-and-yoshua-bengio-2017)
     - [Microscopy cell counting and detection with fully convolutional regression networks (Weidi Xie, J. Alison Noble and Andrew Zisserman, 2016)](#microscopy-cell-counting-and-detection-with-fully-convolutional-regression-networks-weidi-xie-j-alison-noble-and-andrew-zisserman-2016)
-    - [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan et al., 2016)](#crowdnet-a-deep-convolutional-network-for-dense-crowd-counting-lokesh-boominathan-srinivas-s-s-kruthiventi-r-venkatesh-babu-2016)
+    - [Counting in The Wild (Carlos Arteta, Victor Lempitsky and Andrew Zisserman, 2016)](#counting-in-the-wild-carlos-arteta-victor-lempitsky-and-andrew-zisserman-2016)
+	- [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan et al., 2016)](#crowdnet-a-deep-convolutional-network-for-dense-crowd-counting-lokesh-boominathan-srinivas-s-s-kruthiventi-r-venkatesh-babu-2016)
     - [Learning to count with deep object features (Santi Seguí, Oriol Pujol and Jordi Vitrià, 2015)](#learning-to-count-with-deep-object-features-santi-seguí-oriol-pujol-and-jordi-vitrià-2015)
     - [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo et al., 2015)](#extremely-overlapping-vehicle-counting-ricardo-guerrero-gomez-olmedo-et-al-2015)
     - [Learning To Count Objects in Images (Victor Lempitsky and Andrew Zisserman, 2010)](#learning-to-count-objects-in-images-victor-lempitsky-and-andrew-zisserman-2010)
     - [Detecting, localizing and grouping repeated scene elements from an image (Leung, T., Malik, J., 1996)](#detecting-localizing-and-grouping-repeated-scene-elements-from-an-image-leung-t-malik-j-1996)
-5. [Datasets related to counting](#datasets-related-to-counting)
+6. [Datasets related to counting](#datasets-related-to-counting)
     - [Inria Aerial Image Labeling Dataset](#inria-aerial-image-labeling-dataset)
     - [Airbus Ship Detection Dataset](#airbus-ship-detection-dataset)
     - [NOAA Fisheries Steller Sea Lion Population Dataset](#noaa-fisheries-steller-sea-lion-population-dataset)
@@ -26,7 +28,8 @@
     - [CARPK](#carpk)
     - [PUCPR+](#pucpr)
     - [TRANCOS](#trancos)
-    - [Pedestrian Counting Datasets](#pedestrian-counting-datasets)
+    - [ShanghaiTech Dataset](#shanghaitech-dataset)
+
 
 # Counting approaches
 1. __Supervised learning__
@@ -46,6 +49,7 @@
 4. __Unsupervised learning__
     - Perform grouping based on self-similarities or motion similarities. No ground truth (labels) for objects of interest.
 
+
 # Evaluation metrics
 * __*MAE*__ - Mean Absolute Error;
 * __*RMSE*__ - Root Mean Squared Error;	
@@ -56,12 +60,23 @@
                 and compute MAE in each of these subregions);  
 ![evaluation_metrics](./images/evaluation_metrics.png)
 
+
 # Applications
 * Medicine: determine the quantity of red blood cells and white blood cells to infer the health of a patient;
 * Biology: compute the cell concentration in molecular biology to adjust the amount of chemicals to be applied in an experiment;
 * Surveillance: investigate crowds in different regions of a city;
 * Monitoring: count vehicles in a traffic jam;
 * Other applications: counting plants, trees, buildings from aerial images.
+
+
+# Challenges for vision-based object counting
+* overlapping;
+* intra-class variation;
+* object scale issues;
+* perspective issues;
+* visual occlusion;
+* poor illumination;
+
 
 # Papers related to counting
 ## [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](https://arxiv.org/abs/1811.00472)
@@ -78,10 +93,13 @@
   
 ![gmn_2018](./images/gmn_2018.png)
 
+
 ## [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li, Xiaofan Zhang and Deming Chen, 2018)](https://arxiv.org/abs/1802.10062)
-* 
-* 
-* 
+* The authors propose CSRNet for crowd counting and high-quality density map generation.
+* The architecture: VGG16 (first 10 conv layers) + 6 conv layers (dilation rate=1,2,4).
+* They use the dilated convolutional layers to aggregate the multi-scale contextual information in the congested scenes.
+* By using dilated convolutions CSRNet can expand the receptive field without losing resolution.  
+![csr_net_2018](./images/csr_net_2018.png)
 
 
 ## [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](https://arxiv.org/abs/1805.11123)
@@ -113,9 +131,16 @@ is trained with small sub-regions of the images.
 
 
 ## [People, Penguins and Petri Dishes: Adapting Object Counting Models To New Visual Domains And Object Types Without Forgetting (Mark Marsden _et al._, 2017)](https://arxiv.org/abs/1711.05586)
-* 
-* 
-* 
+* The authors propose a new multi-domain object counting technique that employs parameter sharing and can be extended to new counting tasks while maintaining identical performance in all prior tasks.
+* Each new counting task requires only 20,000 additional model parameters.
+* The main idea is to train the network on a specific domain, and after that to retrain just module adapters (other layers are frozen) on different visual domain.
+* In other words:  
+  - at first stage (for prime visual domain) the network learns the 'domain distribution' and 'counting function';
+  - at next stages (for other visual domains) the network learns just the 'domain distribution' (everything else is frozen).
+* The residual adapter modules allow to adapt to the distinct statistical distributions of the various visual domains through domain-specific normalization and scaling.
+* It is better to train first on a dataset with significant morphological variation among objects (e.g. DCC dataset) that will result in a broader set of learned features, and after that, retrain domain adapters for other classes.
+* They also add a refinement network to address the issue of training a patch-based regressor that does not include wide scene context.  
+![adapting_to_new_visual_domains_2017](./images/adapting_to_new_visual_domains_2017.png)
 
 
 ## [Generating High-Quality Crowd Density Maps using Contextual Pyramid CNNs (Vishwanath A. Sindagi and Vishal M. Patel, 2017)](https://arxiv.org/abs/1708.00953)
@@ -168,6 +193,12 @@ is trained with small sub-regions of the images.
   - When counting cells from large cell clumps, a larger receptive field is more important than being able to provide more detailed information over the receptive field.  
 ![fcrns_2016](./images/fcrns_2016.png)
 ![fcrns_inverting_feature_representations_2016](./images/fcrns_inverting_feature_representations_2016.png)
+
+
+## [Counting in The Wild (Carlos Arteta, Victor Lempitsky and Andrew Zisserman, 2016)](https://www.robots.ox.ac.uk/~vgg/publications/2016/Arteta16/arteta16.pdf)
+* 
+* 
+* 
 
 
 ## [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan, Srinivas S S Kruthiventi, R. Venkatesh Babu, 2016)](https://arxiv.org/abs/1608.06197)
@@ -232,7 +263,6 @@ is trained with small sub-regions of the images.
 
 
 # Datasets related to counting
-
 ## Inria Aerial Image Labeling Dataset
 * https://project.inria.fr/aerialimagelabeling/
 * 180 tiff images (5000x5000) with ground truth (for 5 cities).
@@ -296,7 +326,10 @@ is trained with small sub-regions of the images.
 ![trancos_dataset](./images/trancos_dataset.png)
 
 
-## Pedestrian counting datasets
-*
-*
-*
+## ShanghaiTech Dataset
+* https://github.com/desenzhou/ShanghaiTechDataset
+* crowd counting dataset;
+* part A: 482 (various sizes) images (300 for test, 182 for test).
+* part B: 716 (768x1024) images (400 for train, 316 for test).
+* ground truth: dot annotations.  
+![shanghaitech_dataset](./images/shanghaitech_dataset.png)
