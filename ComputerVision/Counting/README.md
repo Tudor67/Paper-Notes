@@ -66,6 +66,7 @@
 * Biology: compute the cell concentration in molecular biology to adjust the amount of chemicals to be applied in an experiment;
 * Surveillance: investigate crowds in different regions of a city;
 * Monitoring: count vehicles in a traffic jam;
+* Urban planning;
 * Other applications: counting plants, trees, buildings from aerial images.
 
 
@@ -144,9 +145,11 @@ is trained with small sub-regions of the images.
 
 
 ## [Generating High-Quality Crowd Density Maps using Contextual Pyramid CNNs (Vishwanath A. Sindagi and Vishal M. Patel, 2017)](https://arxiv.org/abs/1708.00953)
-* 
-* 
-* 
+* The authors present contextual pyramid of CNNs (CP-CNNs) that incorporates global and local contextual information.
+* The global and local contexts are learned by classifying input images/patches into various density levels.
+* The contextual information is concatenated (channel-wise) with the output of a multi-column DME and is used by a Fusion-CNN to generate qualitative density maps. 
+* Addition of contextual information improves the count error and the quality of density maps.  
+![cp_cnn_2017](./images/cp_cnn_2017.png)
 
 
 ## [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh, Yen-Liang Lin and Winston H. Hsu, 2017)](https://arxiv.org/abs/1707.05972)
@@ -196,15 +199,27 @@ is trained with small sub-regions of the images.
 
 
 ## [Counting in The Wild (Carlos Arteta, Victor Lempitsky and Andrew Zisserman, 2016)](https://www.robots.ox.ac.uk/~vgg/publications/2016/Arteta16/arteta16.pdf)
-* 
-* 
-* 
+* The authors use a multi-task approach for learning to count penguins in images.
+* The core of the CNN is the segmentation architecture FCN8, initialized from the VGG16, and adds skip and fusion layers for a finer prediction map.
+* The proposed architecture includes: 
+  - a foreground/background segmentation s(p);
+  - an object density function lambda(p);
+  - a prediction of the agreement between annotators u(p) as a measure of uncertainty.
+* Motivation for the use of multi-task architecture:
+  - improvement in generalization;
+  - reuse the predicted segmentations to change the objective for other branches as learning progresses.
+* They release a dataset that shows a high-degree of object occlusion and scale variation.
+  Each image was annotated with dots by 20 different persons.
+  The counting accuracy improves as the number of annotators per image increases.
+* They also perform up-scale data augmentation (6 different scales), and use 700x700 patches for training.  
+![counting_in_the_wild_2016](./images/counting_in_the_wild_2016.png)
 
 
 ## [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan, Srinivas S S Kruthiventi, R. Venkatesh Babu, 2016)](https://arxiv.org/abs/1608.06197)
 * CrowdNet uses the combination of shallow and deep networks to acquire multi-scale information in density map approximation for crowd counting.
-* 
-* 
+* The main idea is to capture both low-level features and high-level information.
+* They also perform multi-scale data augmentation in order to learn scale invariant representations.  
+![crowdnet_2016](./images/crowdnet_2016.png)
 
 
 ## [Learning to count with deep object features (Santi Seguí, Oriol Pujol and Jordi Vitrià, 2015)](https://arxiv.org/abs/1505.08082)
@@ -219,9 +234,12 @@ is trained with small sub-regions of the images.
 
 
 ## [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo _et al._, 2015)](http://agamenon.tsc.uah.es/Personales/rlopez/docs/ibpria2015-guerrero.pdf)
-* 
-*
-* 
+* The authors introduce TRANCOS, a counting dataset with extremely overlapping vehicles.
+* They also propose a novel evaluation metric, the Grid Average Mean absolute Error (GAME), that represents the MAE of non-overlapping image regions.
+The GAME metric is able to penalize those predictions with a good MAE but a wrong localization of the objects.
+* They apply 3 different state-of-the-art (at that moment) counting methods on the TRANCOS dataset.
+The results show that counting by regression strategies are more precise localizing and estimating the number of vehicles.  
+![overlapping_vehicle_counting_2015](./images/overlapping_vehicle_counting_2015.png)
 
 
 ## [Learning To Count Objects in Images (Victor Lempitsky and Andrew Zisserman, 2010)](http://papers.nips.cc/paper/4043-learning-to-count-objects-in-images.pdf)
