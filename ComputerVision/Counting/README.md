@@ -4,6 +4,7 @@
 3. [Applications](#applications)
 4. [Challenges for vision-based object counting](#challenges-for-vision-based-object-counting)
 5. [Papers related to counting](#papers-related-to-counting)
+    - 
     - [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](#class-agnostic-counting-erika-lu-weidi-xie-and-andrew-zisserman-2018)
     - [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li et al., 2018)](#csrnet-dilated-convolutional-neural-networks-for-understanding-the-highly-congested-scenes-yuhong-li-xiaofan-zhang-and-deming-chen-2018)
     - [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](#object-counting-with-small-datasets-of-large-images-shubhra-aich-and-ian-stavness-2018)
@@ -67,6 +68,7 @@
 * Surveillance: investigate crowds in different regions of a city;
 * Monitoring: count vehicles in a traffic jam;
 * Urban planning;
+* Behavior analysis in crowd scenes;
 * Other applications: counting plants, trees, buildings from aerial images.
 
 
@@ -80,6 +82,28 @@
 
 
 # Papers related to counting
+## [Improving Dense Crowd Counting Convolutional Neural Networks using Inverse k-Nearest Neighbor Maps and Multiscale Upsampling (Greg Olmschenk, Hao Tang and Zhigang Zhu, 2019)](https://arxiv.org/abs/1902.05379)
+* 
+* 
+* 
+
+
+## [Almost Unsupervised Learning for Dense Crowd Counting (Deepak Babu Sam, Neeraj N Sajjan, Himanshu Maurya, R. Venkatesh Babu, 2019)](http://val.serc.iisc.ernet.in/valweb/papers/AAAI_2019_WTACNN.pdf)
+* The authors propose to train a counting CNN in an almost unsupervised manner:
+  a. (Unsupervised) They develop  Grid Winner-Take-All (GWTA) autoencoder to learn useful features from unlabeled images.
+The basic idea is to divide the conv layer in grid cells and within each cell, only the maximally activated neuron is allowed to update the filter.
+  b. (Supervised) Density map regression from the autoencoder features.
+The layers trained in unsupervised manner are frozen and only the last 2 layers are tuned with labeled data.
+* 99.9% of the parameters of the network are trained with unlabeled images, 0.1% with labeled images.
+* Their unsupervised approach outperforms fully supervised training when available labeled data is less.
+> The basic idea of winner-take-all (WTA) regularization for autoencoders is to selectively perform learning for neurons in the autoencoder.
+This means not all neurons are allowed to update their weights at a particular iteration, creating a race among neurons to learn a feature and get specialized.
+WTA autoencoders acquire better features than normal autoencoders.  
+> The authors modify WTA training methodology and develop Grid WTA conv autoencoders to handle huge diversity in crowd scenes.  
+
+![gwta_ccnn_2019](./images/gwta_ccnn_2019.png)
+
+
 ## [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](https://arxiv.org/abs/1811.00472)
 * The authors recast object counting as a matching problem.
 * They develop a Generic Matching Network (GMN) that learns a discriminative classifier to match instances of a given exemplar.
@@ -93,6 +117,26 @@
     * intra-class variation (in the case of cars, both color and shape);  
   
 ![gmn_2018](./images/gmn_2018.png)
+
+
+## [Iterative Crowd Counting (Viresh Ranjan, Hieu Le and Minh Hoai, 2018)](https://arxiv.org/abs/1807.09959)
+* 
+* 
+* 
+
+
+## [Leveraging Unlabeled Data for Crowd Counting by Learning to Rank (Xialei Liu, Joost van de Weijer and Andrew D. Bagdanov, 2018)](https://arxiv.org/abs/1803.03095)
+* The authors propose an approach that leverages unlabeled crowd imagery in a learning-to-rank framework.
+To induce a ranking of cropped images, they use the following observation: a crowd image contains more or the same number of persons than its cropped sub-images.
+* To enforce the ranking, they apply the pairwise ranking hinge loss.
+A typical implementation of the ranking loss would involve a Siamese network with 2 parallel branches that share the same parameters.
+* They demonstrate how to efficiently learn from unlabeled datasets by incorporating learning-to-rank in a multi-task network which simultaneously ranks images and estimates crowd density maps.
+* Alternating-task and multi-task learning is better than ranking plus fine-tuning:
+  - If the network is trained first exclusively on the self-supervised task, you can not be sure it focuses on people.
+     This is probably caused by the poorly-defined nature of the self-supervised task.
+  - By jointly learning both the self-supervised and crowd counting tasks, the self-supervised task is forced to focus on counting persons.
+* They achieve state-of-the-art results on ShanghaiTech and UCF_CC_50 dataset.  
+![learning_to_rank_2018](./images/learning_to_rank_2018.png)
 
 
 ## [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li, Xiaofan Zhang and Deming Chen, 2018)](https://arxiv.org/abs/1802.10062)
@@ -152,6 +196,12 @@ is trained with small sub-regions of the images.
 ![cp_cnn_2017](./images/cp_cnn_2017.png)
 
 
+## [Representation Learning by Learning to Count (Mehdi Noroozi, Hamed Pirsiavash and Paolo Favaro, 2017)](https://arxiv.org/abs/1708.06734)
+* 
+* 
+* 
+
+
 ## [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh, Yen-Liang Lin and Winston H. Hsu, 2017)](https://arxiv.org/abs/1707.05972)
 * They leverage the spatial layout information (e.g., cars often park regularly) and introduce these spatially regularized constraints into their network to improve the localization accuracy.
 * The spatial layout information can be used to improve results of object counting tasks with regularized structures.
@@ -159,6 +209,12 @@ is trained with small sub-regions of the images.
 > The regression-based methods can not generate precise object positions.  
   
 ![layout_proposal_network_2017](./images/layout_proposal_network_2017.png)
+
+
+## [Divide and Count: Generic Object Counting by Image Divisions (Tobias Stahl, Silvia L. Pintea and Jan C. van Gemert, 2017)](https://jvgemert.github.io/pub/stahlTIP18counting.pdf)
+* 
+* 
+* 
 
 
 ## [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Genevieve Boucher, Craig A. Glastonbury, Henry Z. Lo and Yoshua Bengio, 2017)](https://arxiv.org/abs/1703.08710)
@@ -347,7 +403,8 @@ The results show that counting by regression strategies are more precise localiz
 ## ShanghaiTech Dataset
 * https://github.com/desenzhou/ShanghaiTechDataset
 * crowd counting dataset;
-* part A: 482 (various sizes) images (300 for test, 182 for test).
-* part B: 716 (768x1024) images (400 for train, 316 for test).
+* 330,165 annotated heads;
+* part A: 482 (various sizes) images (300 for test, 182 for test) which are randomly crawled from the Internet.
+* part B: 716 (768x1024) images (400 for train, 316 for test) which are taken from busy streets.
 * ground truth: dot annotations.  
 ![shanghaitech_dataset](./images/shanghaitech_dataset.png)
