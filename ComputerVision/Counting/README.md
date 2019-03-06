@@ -94,9 +94,9 @@
 
 
 ## [Almost Unsupervised Learning for Dense Crowd Counting (Deepak Babu Sam, Neeraj N Sajjan, Himanshu Maurya, R. Venkatesh Babu, 2019)](http://val.serc.iisc.ernet.in/valweb/papers/AAAI_2019_WTACNN.pdf)
-* The authors propose to train a counting CNN in an almost unsupervised manner:
-  a. (Unsupervised) They develop  Grid Winner-Take-All (GWTA) autoencoder to learn useful features from unlabeled images.
-The basic idea is to divide the conv layer in grid cells and within each cell, only the maximally activated neuron is allowed to update the filter.
+* The authors propose to train a counting CNN in an almost unsupervised manner:  
+  a. (Unsupervised) They develop  Grid Winner-Take-All (GWTA) autoencoder to learn useful features from unlabeled images.  
+The basic idea is to divide the conv layer in grid cells and within each cell, only the maximally activated neuron is allowed to update the filter.  
   b. (Supervised) Density map regression from the autoencoder features.
 The layers trained in unsupervised manner are frozen and only the last 2 layers are tuned with labeled data.
 * 99.9% of the parameters of the network are trained with unlabeled images, 0.1% with labeled images.
@@ -125,19 +125,21 @@ WTA autoencoders acquire better features than normal autoencoders.
 
 
 ## [Iterative Crowd Counting (Viresh Ranjan, Hieu Le and Minh Hoai, 2018)](https://arxiv.org/abs/1807.09959)
-* 
-* 
-* 
+* The authors propose iterative counting CNN (ic-CNN), a two-branch architecture for crowd counting using a density estimation approach.
+* One branch estimates a low resolution density map and the other generates a high resolution density map.
+* They have also proposed a multi-stage pipeline comprising multiple ic-CNNs, where each stage takes into account the predictions from the previous stages.
+* Their method achieves the lowest MAE on ShanghaiTech, WorldExpo'10 and UCF datasets.  
+![ic_cnn_2018](./images/ic_cnn_2018.png)
 
 
 ## [Leveraging Unlabeled Data for Crowd Counting by Learning to Rank (Xialei Liu, Joost van de Weijer and Andrew D. Bagdanov, 2018)](https://arxiv.org/abs/1803.03095)
-* The authors propose an approach that leverages unlabeled crowd imagery in a learning-to-rank framework.
+* The authors propose an approach that leverages unlabeled crowd imagery in a learning-to-rank framework.  
 To induce a ranking of cropped images, they use the following observation: a crowd image contains more or the same number of persons than its cropped sub-images.
-* To enforce the ranking, they apply the pairwise ranking hinge loss.
+* To enforce the ranking, they apply the pairwise ranking hinge loss.  
 A typical implementation of the ranking loss would involve a Siamese network with 2 parallel branches that share the same parameters.
 * They demonstrate how to efficiently learn from unlabeled datasets by incorporating learning-to-rank in a multi-task network which simultaneously ranks images and estimates crowd density maps.
 * Alternating-task and multi-task learning is better than ranking plus fine-tuning:
-  - If the network is trained first exclusively on the self-supervised task, you can not be sure it focuses on people.
+  - If the network is trained first exclusively on the self-supervised task, you can not be sure it focuses on people.  
      This is probably caused by the poorly-defined nature of the self-supervised task.
   - By jointly learning both the self-supervised and crowd counting tasks, the self-supervised task is forced to focus on counting persons.
 * They achieve state-of-the-art results on ShanghaiTech and UCF_CC_50 dataset.  
@@ -217,9 +219,13 @@ is trained with small sub-regions of the images.
 
 
 ## [Divide and Count: Generic Object Counting by Image Divisions (Tobias Stahl, Silvia L. Pintea and Jan C. van Gemert, 2017)](https://jvgemert.github.io/pub/stahlTIP18counting.pdf)
-* 
-* 
-* 
+* The authors propose an end-to-end deep learning method for generic object counting with the following observations:
+  - they make no assumption about the object class (does not use any prior category information);
+  - their method is not dependent on the region proposal method;
+  - the ground truth is represented by the image global count (without localization);
+* They introduce a FC layer: Inclusion-Exclusion Principle (IEP) layer to perform the counting optimization independently per image division and to avoid over-counting for highly overlapping image regions.
+* Learning over a hierarchy rather than a flat structure helps, as each hierarchy level is independently optimized in the L1 loss.  
+![generic_object_counting_by_image_divisions_2017](./images/generic_object_counting_by_image_divisions_2017.png)
 
 
 ## [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Genevieve Boucher, Craig A. Glastonbury, Henry Z. Lo and Yoshua Bengio, 2017)](https://arxiv.org/abs/1703.08710)
