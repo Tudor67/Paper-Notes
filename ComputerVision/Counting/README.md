@@ -3,37 +3,45 @@
 2. [Evaluation metrics](#evaluation-metrics)
 3. [Applications](#applications)
 4. [Challenges for vision-based object counting](#challenges-for-vision-based-object-counting)
-5. [Papers related to counting](#papers-related-to-counting)
-    - [Improving Dense Crowd Counting Convolutional Neural Networks using Inverse k-Nearest Neighbor Maps and Multiscale Upsampling (Greg Olmschenk et al., 2019)](#improving-dense-crowd-counting-convolutional-neural-networks-using-inverse-k-nearest-neighbor-maps-and-multiscale-upsampling-greg-olmschenk-hao-tang-and-zhigang-zhu-2019)
-    - [Almost Unsupervised Learning for Dense Crowd Counting (Deepak Babu Sam et al., 2019)](#almost-unsupervised-learning-for-dense-crowd-counting-deepak-babu-sam-neeraj-n-sajjan-himanshu-maurya-r-venkatesh-babu-2019)
-    - [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](#class-agnostic-counting-erika-lu-weidi-xie-and-andrew-zisserman-2018)
-    - [Iterative Crowd Counting (Viresh Ranjan, Hieu Le and Minh Hoai, 2018)](#iterative-crowd-counting-viresh-ranjan-hieu-le-and-minh-hoai-2018)
-    - [Leveraging Unlabeled Data for Crowd Counting by Learning to Rank (Xialei Liu et al., 2018)](#leveraging-unlabeled-data-for-crowd-counting-by-learning-to-rank-xialei-liu-joost-van-de-weijer-and-andrew-d-bagdanov-2018)
-    - [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li et al., 2018)](#csrnet-dilated-convolutional-neural-networks-for-understanding-the-highly-congested-scenes-yuhong-li-xiaofan-zhang-and-deming-chen-2018)
-    - [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](#object-counting-with-small-datasets-of-large-images-shubhra-aich-and-ian-stavness-2018)
-    - [Learning Short-Cut Connections for Object Counting (Daniel Oñoro-Rubio et al., 2018)](#learning-short-cut-connections-for-object-counting-daniel-oñoro-rubio-mathias-niepert-and-roberto-j-lópez-sastre-2018)
-    - [Improving Object Counting with Heatmap Regulation (Shubhra Aich and Ian Stavness, 2018)](#improving-object-counting-with-heatmap-regulation-shubhra-aich-and-ian-stavness-2018)
-    - [People, Penguins and Petri Dishes: Adapting Object Counting Models To New Visual Domains And Object Types Without Forgetting (Mark Marsden et al., 2017)](#people-penguins-and-petri-dishes-adapting-object-counting-models-to-new-visual-domains-and-object-types-without-forgetting-mark-marsden-et-al-2017)
-    - [Generating High-Quality Crowd Density Maps using Contextual Pyramid CNNs (Vishwanath A. Sindagi and Vishal M. Patel, 2017)](#generating-high-quality-crowd-density-maps-using-contextual-pyramid-cnns-vishwanath-a-sindagi-and-vishal-m-patel-2017)
-    - [Representation Learning by Learning to Count (Mehdi Noroozi, Hamed Pirsiavash and Paolo Favaro, 2017)](#representation-learning-by-learning-to-count-mehdi-noroozi-hamed-pirsiavash-and-paolo-favaro-2017)
-    - [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh et al., 2017)](#drone-based-object-counting-by-spatially-regularized-regional-proposal-network-meng-ru-hsieh-yen-liang-lin-and-winston-h-hsu-2017)
-    - [Divide and Count: Generic Object Counting by Image Divisions (Tobias Stahl et al., 2017)](#divide-and-count-generic-object-counting-by-image-divisions-tobias-stahl-silvia-l-pintea-and-jan-c-van-gemert-2017)
-    - [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Yoshua Bengio et al., 2017)](#count-ception-counting-by-fully-convolutional-redundant-counting-joseph-paul-cohen-genevieve-boucher-craig-a-glastonbury-henry-z-lo-and-yoshua-bengio-2017)
-    - [Microscopy cell counting and detection with fully convolutional regression networks (Weidi Xie, J. Alison Noble and Andrew Zisserman, 2016)](#microscopy-cell-counting-and-detection-with-fully-convolutional-regression-networks-weidi-xie-j-alison-noble-and-andrew-zisserman-2016)
-    - [Counting in The Wild (Carlos Arteta, Victor Lempitsky and Andrew Zisserman, 2016)](#counting-in-the-wild-carlos-arteta-victor-lempitsky-and-andrew-zisserman-2016)
-	- [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan et al., 2016)](#crowdnet-a-deep-convolutional-network-for-dense-crowd-counting-lokesh-boominathan-srinivas-s-s-kruthiventi-r-venkatesh-babu-2016)
-    - [Learning to count with deep object features (Santi Seguí, Oriol Pujol and Jordi Vitrià, 2015)](#learning-to-count-with-deep-object-features-santi-seguí-oriol-pujol-and-jordi-vitrià-2015)
-    - [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo et al., 2015)](#extremely-overlapping-vehicle-counting-ricardo-guerrero-gomez-olmedo-et-al-2015)
-    - [Learning To Count Objects in Images (Victor Lempitsky and Andrew Zisserman, 2010)](#learning-to-count-objects-in-images-victor-lempitsky-and-andrew-zisserman-2010)
-    - [Detecting, localizing and grouping repeated scene elements from an image (Leung, T., Malik, J., 1996)](#detecting-localizing-and-grouping-repeated-scene-elements-from-an-image-leung-t-malik-j-1996)
+5. [Papers related to counting](#papers-related-to-counting)  
+    *  __2019__  
+        - [Improving Dense Crowd Counting Convolutional Neural Networks using Inverse k-Nearest Neighbor Maps and Multiscale Upsampling (Greg Olmschenk et al., 2019)](#improving-dense-crowd-counting-convolutional-neural-networks-using-inverse-k-nearest-neighbor-maps-and-multiscale-upsampling-greg-olmschenk-hao-tang-and-zhigang-zhu-2019)
+        - [Almost Unsupervised Learning for Dense Crowd Counting (Deepak Babu Sam et al., 2019)](#almost-unsupervised-learning-for-dense-crowd-counting-deepak-babu-sam-neeraj-n-sajjan-himanshu-maurya-r-venkatesh-babu-2019)  
+    * __2018__
+        - [Class-Agnostic Counting (Erika Lu, Weidi Xie and Andrew Zisserman, 2018)](#class-agnostic-counting-erika-lu-weidi-xie-and-andrew-zisserman-2018)
+        - [Composition Loss for Counting, Density Map Estimation and Localization in Dense Crowds (Haroon Idrees et al., 2018)](#composition-loss-for-counting-density-map-estimation-and-localization-in-dense-crowds-haroon-idrees-muhmmad-tayyab-kishan-athrey-dong-zhang-somaya-al-maadeed-nasir-rajpoot-and-mubarak-shah-2018)
+        - [Iterative Crowd Counting (Viresh Ranjan, Hieu Le and Minh Hoai, 2018)](#iterative-crowd-counting-viresh-ranjan-hieu-le-and-minh-hoai-2018)
+        - [Leveraging Unlabeled Data for Crowd Counting by Learning to Rank (Xialei Liu et al., 2018)](#leveraging-unlabeled-data-for-crowd-counting-by-learning-to-rank-xialei-liu-joost-van-de-weijer-and-andrew-d-bagdanov-2018)
+        - [CSRNet: Dilated Convolutional Neural Networks for Understanding the Highly Congested Scenes (Yuhong Li et al., 2018)](#csrnet-dilated-convolutional-neural-networks-for-understanding-the-highly-congested-scenes-yuhong-li-xiaofan-zhang-and-deming-chen-2018)
+        - [Object Counting with Small Datasets of Large Images (Shubhra Aich and Ian Stavness, 2018)](#object-counting-with-small-datasets-of-large-images-shubhra-aich-and-ian-stavness-2018)
+        - [Learning Short-Cut Connections for Object Counting (Daniel Oñoro-Rubio et al., 2018)](#learning-short-cut-connections-for-object-counting-daniel-oñoro-rubio-mathias-niepert-and-roberto-j-lópez-sastre-2018)
+        - [Improving Object Counting with Heatmap Regulation (Shubhra Aich and Ian Stavness, 2018)](#improving-object-counting-with-heatmap-regulation-shubhra-aich-and-ian-stavness-2018)  
+    * __2017__
+        - [People, Penguins and Petri Dishes: Adapting Object Counting Models To New Visual Domains And Object Types Without Forgetting (Mark Marsden et al., 2017)](#people-penguins-and-petri-dishes-adapting-object-counting-models-to-new-visual-domains-and-object-types-without-forgetting-mark-marsden-et-al-2017)
+        - [Generating High-Quality Crowd Density Maps using Contextual Pyramid CNNs (Vishwanath A. Sindagi and Vishal M. Patel, 2017)](#generating-high-quality-crowd-density-maps-using-contextual-pyramid-cnns-vishwanath-a-sindagi-and-vishal-m-patel-2017)
+        - [Representation Learning by Learning to Count (Mehdi Noroozi, Hamed Pirsiavash and Paolo Favaro, 2017)](#representation-learning-by-learning-to-count-mehdi-noroozi-hamed-pirsiavash-and-paolo-favaro-2017)
+        - [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh et al., 2017)](#drone-based-object-counting-by-spatially-regularized-regional-proposal-network-meng-ru-hsieh-yen-liang-lin-and-winston-h-hsu-2017)
+        - [Divide and Count: Generic Object Counting by Image Divisions (Tobias Stahl et al., 2017)](#divide-and-count-generic-object-counting-by-image-divisions-tobias-stahl-silvia-l-pintea-and-jan-c-van-gemert-2017)
+        - [Count-ception: Counting by Fully Convolutional Redundant Counting (Joseph Paul Cohen, Yoshua Bengio et al., 2017)](#count-ception-counting-by-fully-convolutional-redundant-counting-joseph-paul-cohen-genevieve-boucher-craig-a-glastonbury-henry-z-lo-and-yoshua-bengio-2017)  
+    * __2016__
+        - [Microscopy cell counting and detection with fully convolutional regression networks (Weidi Xie, J. Alison Noble and Andrew Zisserman, 2016)](#microscopy-cell-counting-and-detection-with-fully-convolutional-regression-networks-weidi-xie-j-alison-noble-and-andrew-zisserman-2016)
+        - [Counting in The Wild (Carlos Arteta, Victor Lempitsky and Andrew Zisserman, 2016)](#counting-in-the-wild-carlos-arteta-victor-lempitsky-and-andrew-zisserman-2016)
+        - [CrowdNet: A Deep Convolutional Network for Dense Crowd Counting (Lokesh Boominathan et al., 2016)](#crowdnet-a-deep-convolutional-network-for-dense-crowd-counting-lokesh-boominathan-srinivas-s-s-kruthiventi-r-venkatesh-babu-2016)  
+    * __2015__
+        - [Learning to count with deep object features (Santi Seguí, Oriol Pujol and Jordi Vitrià, 2015)](#learning-to-count-with-deep-object-features-santi-seguí-oriol-pujol-and-jordi-vitrià-2015)
+        - [Extremely Overlapping Vehicle Counting (Ricardo Guerrero-Gomez-Olmedo et al., 2015)](#extremely-overlapping-vehicle-counting-ricardo-guerrero-gomez-olmedo-et-al-2015)  
+    * __2010__
+        - [Learning To Count Objects in Images (Victor Lempitsky and Andrew Zisserman, 2010)](#learning-to-count-objects-in-images-victor-lempitsky-and-andrew-zisserman-2010)  
+    * __1996__
+        - [Detecting, localizing and grouping repeated scene elements from an image (Leung, T., Malik, J., 1996)](#detecting-localizing-and-grouping-repeated-scene-elements-from-an-image-leung-t-malik-j-1996)
 6. [Datasets related to counting](#datasets-related-to-counting)
     - [Inria Aerial Image Labeling Dataset](#inria-aerial-image-labeling-dataset)
     - [Airbus Ship Detection Dataset](#airbus-ship-detection-dataset)
     - [NOAA Fisheries Steller Sea Lion Population Dataset](#noaa-fisheries-steller-sea-lion-population-dataset)
     - [VGG Cells Dataset](#vgg-cells-dataset)
-    - [CARPK](#carpk)
-    - [PUCPR+](#pucpr)
-    - [TRANCOS](#trancos)
+    - [CARPK Dataset](#carpk)
+    - [PUCPR+ Dataset](#pucpr)
+    - [TRANCOS Dataset](#trancos)
     - [ShanghaiTech Dataset](#shanghaitech-dataset)
 
 
@@ -404,7 +412,7 @@ The results show that counting by regression strategies are more precise localiz
 ![vgg_cells_dataset](./images/vgg_cells_dataset.png)
 
 
-## CARPK
+## CARPK Dataset
 * https://lafi.github.io/LPN/
 * 1448 images (720x1280) (989 for train, 459 for test) of cars captured from different parking lots;
 * 90,000 cars;
@@ -413,7 +421,7 @@ The results show that counting by regression strategies are more precise localiz
 ![carpk_dataset](./images/carpk_dataset.png)
 
 
-## PUCPR+
+## PUCPR+ Dataset
 * https://lafi.github.io/LPN/
 * modified annotations of PUCPR (initial dataset);
 * 125 images (720x1280) (100 for train, 25 for test) of cars captured from a single parking lot, using fixed camera sensors that are placed in the same place;
@@ -423,7 +431,7 @@ The results show that counting by regression strategies are more precise localiz
 ![pucpr_plus_dataset](./images/pucpr_plus_dataset.png)
 
 
-## TRANCOS
+## TRANCOS Dataset
 * http://agamenon.tsc.uah.es/Personales/rlopez/data/trancos/
 * benchmark for (extremely overlapping) vehicle counting in traffic congestion situations;
 * 1,244 (480x640) images;
