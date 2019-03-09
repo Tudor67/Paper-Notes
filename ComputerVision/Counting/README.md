@@ -88,9 +88,17 @@
 
 # Papers related to counting
 ## [Improving Dense Crowd Counting Convolutional Neural Networks using Inverse k-Nearest Neighbor Maps and Multiscale Upsampling (Greg Olmschenk, Hao Tang and Zhigang Zhu, 2019)](https://arxiv.org/abs/1902.05379)
-* 
-* 
-* 
+* The main ideas of this work:  
+  1. Density map labeling is flawed. 
+  2. The authors propose an alternative: inverse k-nearest neighbor (ikNN) labeling scheme.
+  3. They show that by simply replacing density map training in a NN with their ikNN map training, the testing accuracy of the NN improves.
+  4. A new network architecture is proposed: MUD-ikNN, which uses multi-scale upsampling with transposed convs to make effective use of ikNN labeling scheme.
+* ikNN:
+  - does not explicitly represent crowd density;
+  - a single ikNN provides information similar to any arbitrary number of density maps with different Gaussian spreads, in a form which is better suited for NN training;
+  - it provides a significant gradient spatially across the entire label and yet still provides precise location information of pedestrians.
+* The final count prediction = the mean of all predicted crowd count from the regression modules and the output of the final DenseBlock.  
+![iknn_2019](./images/iknn_2019.png)
 
 
 ## [Almost Unsupervised Learning for Dense Crowd Counting (Deepak Babu Sam, Neeraj N Sajjan, Himanshu Maurya, R. Venkatesh Babu, 2019)](http://val.serc.iisc.ernet.in/valweb/papers/AAAI_2019_WTACNN.pdf)
@@ -122,6 +130,12 @@ WTA autoencoders acquire better features than normal autoencoders.
     * intra-class variation (in the case of cars, both color and shape);  
   
 ![gmn_2018](./images/gmn_2018.png)
+
+
+## [Composition Loss for Counting, Density Map Estimation and Localization in Dense Crowds (Haroon Idrees, Muhmmad Tayyab, Kishan Athrey, Dong Zhang, Somaya Al-Maadeed, Nasir Rajpoot and Mubarak Shah, 2018)](https://arxiv.org/abs/1808.01050)
+* 
+* 
+* They introduce UCF-QNRF dataset, which contains 1201 + 334 dense crowd images with 1,251,642 dot annotations.
 
 
 ## [Iterative Crowd Counting (Viresh Ranjan, Hieu Le and Minh Hoai, 2018)](https://arxiv.org/abs/1807.09959)
@@ -204,9 +218,17 @@ is trained with small sub-regions of the images.
 
 
 ## [Representation Learning by Learning to Count (Mehdi Noroozi, Hamed Pirsiavash and Paolo Favaro, 2017)](https://arxiv.org/abs/1708.06734)
-* 
-* 
-* 
+* Remark: this paper is more related to representation learning than to counting.
+* The authors introduce a novel method to learn representations from data that does not rely on manual annotations.
+* Counting is used as a pretext task, which is formalized as a constraint that relates the 'counted' primitives in tiles of an image to those counted in its downsampled version.
+This constraint is used to train a NN with a contrastive loss.
+* In other words, the main observations used in this paper are the following:
+  - (scaling) the number of visual primitives in an image is invariant to scale;
+  - (tiling) the number of visual primitives in a whole image is equal to the total number of visual primitives from its sub-regions.
+* I think that representations learned in this way can also be used later for semi-supervised counting tasks.
+> One way to characterize a feature of interest is to describe how it should vary as a function of changes in the input data.  
+
+![representation_learning_by_learning_to_count_2017](./images/representation_learning_by_learning_to_count_2017.png)
 
 
 ## [Drone-based Object Counting by Spatially Regularized Regional Proposal Network (Meng-Ru Hsieh, Yen-Liang Lin and Winston H. Hsu, 2017)](https://arxiv.org/abs/1707.05972)
