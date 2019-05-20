@@ -5,6 +5,7 @@
 4. [Challenges for vision-based object counting](#challenges-for-vision-based-object-counting)
 5. [Papers related to counting](#papers-related-to-counting)  
     *  __2019__  
+        - [W-Net: Reinforced U-Net for Density Map Estimation (Varun Kannadi Valloli and Kinal Mehta, 2019)](#w-net-reinforced-u-net-for-density-map-estimation-varun-kannadi-valloli-and-kinal-mehta-2019)
         - [Improving Dense Crowd Counting Convolutional Neural Networks using Inverse k-Nearest Neighbor Maps and Multiscale Upsampling (Greg Olmschenk et al., 2019)](#improving-dense-crowd-counting-convolutional-neural-networks-using-inverse-k-nearest-neighbor-maps-and-multiscale-upsampling-greg-olmschenk-hao-tang-and-zhigang-zhu-2019)
         - [Almost Unsupervised Learning for Dense Crowd Counting (Deepak Babu Sam et al., 2019)](#almost-unsupervised-learning-for-dense-crowd-counting-deepak-babu-sam-neeraj-n-sajjan-himanshu-maurya-r-venkatesh-babu-2019)  
     * __2018__
@@ -95,6 +96,16 @@
 
 
 # Papers related to counting
+## [W-Net: Reinforced U-Net for Density Map Estimation (Varun Kannadi Valloli and Kinal Mehta, 2019)](https://arxiv.org/abs/1903.11249)
+* They propose a U-Net inspired architecture (called W-Net) with 3 branches:
+  - encoder branch: pre-trained VGG16bn for feature extraction;
+  - decoder branch (1): density map estimation (DME) branch;
+  - decoder branch (2): reinforcement branch that does binary classification in order to improve the DME and help the network to converge faster.
+* They report state-of-the-art results on 3 crowd counting datasets: ShanghaiTech, UCF\_CC\_50, UCSD.
+* Remark: Use nearest neighbor interpolation + convolutions for upsampling instead of transposed convolutions which produce checkerboard artifacts.  
+![w_net_2019](./images/w_net_2019.png)
+
+
 ## [Improving Dense Crowd Counting Convolutional Neural Networks using Inverse k-Nearest Neighbor Maps and Multiscale Upsampling (Greg Olmschenk, Hao Tang and Zhigang Zhu, 2019)](https://arxiv.org/abs/1902.05379)
 * The main ideas of this work:  
   1. Density map labeling is flawed. 
