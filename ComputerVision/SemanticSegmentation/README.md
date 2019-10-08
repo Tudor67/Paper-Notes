@@ -5,8 +5,8 @@
     *  __2016__
 	    - [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan et al., 2016)](#segnet-a-deep-convolutional-encoder-decoder-architecture-for-image-segmentation-vijay-badrinarayanan-alex-kendall-roberto-cipolla-2016)
 	*  __2015__
-	    - [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger et al., 2015](#u-net-convolutional-networks-for-biomedical-image-segmentation-olaf-ronneberger-philipp-fischer-and-thomas-brox-2015)
-        - [Fully Convolutional Networks for Semantic Segmentation (Jonathan Long et al., 2015](#fully-convolutional-networks-for-semantic-segmentation-jonathan-long-evan-shelhamer-and-trevor-darrell-2015)
+	    - [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger et al., 2015)](#u-net-convolutional-networks-for-biomedical-image-segmentation-olaf-ronneberger-philipp-fischer-and-thomas-brox-2015)
+        - [Fully Convolutional Networks for Semantic Segmentation (Jonathan Long et al., 2015)](#fully-convolutional-networks-for-semantic-segmentation-jonathan-long-evan-shelhamer-and-trevor-darrell-2015)
       
 
 # Papers related to semantic segmentation
@@ -26,6 +26,21 @@
 
 
 ## [Fully Convolutional Networks for Semantic Segmentation (Jonathan Long, Evan Shelhamer and Trevor Darrell, 2015)](https://arxiv.org/abs/1411.4038)
-* 
-* 
+* This paper contains the main ingredients we should use when we build a model for semantic segmentation task:
+  - Fully convolutional networks to make dense predictions (use only convolutional layers);
+  - Initialization & transfer learning matters: fine-tuning pre-trained encoders can results in better feature extractors;
+  - Upsampling can be learned: use transposed convolutions (warning: [checkerboard artifacts](https://distill.pub/2016/deconv-checkerboard/)) instead of fixed bilinear interpolation. 
+  - Fusion of shallow, fine layers (with low-level, spatial information: where) and deep, coarse layers (with high-level, semantic information: what) for accurate and detailed segmentations.
+* The authors transform the well-known classification models (AlexNet, VGG16, etc.) into fully convolutional nets (FCNs). They replace fully connected layers with convolutional ones to output spatial maps instead of classification scores.
+* The encoder/feature extractor:
+  - convolutional layers of pre-trained AlexNet, VGG16, GoogLeNet;
+  - best results achieved with VGG16;
+* The network is pre-trained on the classification problem and fine-tuned on the segmentation task;
+* FCN is refined by fusing (element-wise addition) spatial information from shallow layers with semantic information from deep layers.
+  - Low-level features (shallow layers): good spatial location information, weak semantic information;
+  - High-level features (deep layers): weak spatial location information, good semantic information;
+  - Combination of both low-level and high-level features lets the model to make better local predictions that respect the global structure.
+* State-of-the-art results (in 2015) on PASCAL VOC 2011 (62.7% mean IoU) and PASCAL VOC 2012 (62.2% mean IoU) datasets.  
+![fcn_2015](./images/fcn_2015.png)
+
 
