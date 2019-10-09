@@ -21,8 +21,13 @@
  
 
 ## [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger, Philipp Fischer and Thomas Brox, 2015)](https://arxiv.org/abs/1505.04597)
-* 
-* 
+* They extend [FCN](https://arxiv.org/abs/1411.4038) by adding skip-connections from encoder to decoder:
+  - Each block of feature maps from encoder is copied and concatenated to the corresponding block from decoder.
+  - In this way, the fine/low-level information from the encoder layers is propagated to the higher layers in order to improve the localization accuracy of predictions.
+  - The encoder (downsampling path) is more or less symmetric to the decoder (upsampling path) and yield a u-shaped architecture. This is why the network is called U-Net. 
+* This model achieves good results on biomedical image segmentation tasks:
+  - State-of-the-art performance on EM segmentation challenge (2015) and ISBI cell tracking challenge (2015).  
+![u_net_2015](./images/u_net_2015.png)
 
 
 ## [Fully Convolutional Networks for Semantic Segmentation (Jonathan Long, Evan Shelhamer and Trevor Darrell, 2015)](https://arxiv.org/abs/1411.4038)
