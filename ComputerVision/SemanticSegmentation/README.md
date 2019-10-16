@@ -3,8 +3,10 @@
 2. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
     *  __2019__  
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
-    *  __2016__
-	    - [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan et al., 2016)](#segnet-a-deep-convolutional-encoder-decoder-architecture-for-image-segmentation-vijay-badrinarayanan-alex-kendall-roberto-cipolla-2016)
+    *  __2017__
+	    - [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen et al., 2017)](#deeplab-semantic-image-segmentation-with-deep-convolutional-nets-atrous-convolution-and-fully-connected-crfs-liang-chieh-chen-george-papandreou-iasonas-kokkinos-kevin-murphy-and-alan-l.-yuille-2017)
+	*  __2016__
+	    - [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan et al., 2016)](#segnet-a-deep-convolutional-encoder-decoder-architecture-for-image-segmentation-vijay-badrinarayanan-alex-kendall-and-roberto-cipolla-2016)
 	*  __2015__
 	    - [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger et al., 2015)](#u-net-convolutional-networks-for-biomedical-image-segmentation-olaf-ronneberger-philipp-fischer-and-thomas-brox-2015)
         - [Fully Convolutional Networks for Semantic Segmentation (Jonathan Long et al., 2015)](#fully-convolutional-networks-for-semantic-segmentation-jonathan-long-evan-shelhamer-and-trevor-darrell-2015)
@@ -26,7 +28,32 @@
 *
 
 
-## [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan, Alex Kendall, Roberto Cipolla, 2016)](https://arxiv.org/abs/1511.00561)
+## [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen, George Papandreou, Iasonas Kokkinos, Kevin Murphy and Alan L. Yuille, 2017)](https://arxiv.org/abs/1606.00915)
+* The main contributions of the proposed DeepLab system:
+  - Atrous/dilated convolutions:
+    * enlarge the field of view of filters to incorporate larger context without increasing the number of parameters;
+	* avoid spatial resolution coarsening.
+  - Fully connected CRFs for segmentation post-processing:
+    * extra smoothing for better local consistency;
+	* align segment boundaries with sharp changes in the image.
+  - Atrous Spatial Pyramid Pooling (ASPP):
+    * robustly segment objects at multiple scales;
+* Architecture:
+  - Start from a classification CNN (VGG-16/ResNet-101), pre-trained on ImageNet;
+  - Fully connected layers -> 1x1 convolutions;
+  - Last several conv + pool blocks -> dilated convolutions with stride=1, rate>1 or ASPP
+  - Upsampling (bilinear interpolation);
+  - Post-processing with CRFs.
+* State-of-the-art results (in 2016-2017) on the following datasets:
+ - PASCAL VOC 2012 (79.7% mean IoU);
+ - PASCAL-Context (45.7% mean IoU);
+ - PASCAL-Person-Part (64.94% mean IoU);
+ - Cityscapes (70.4% mean IoU). 
+* More info: [DeepLab site](http://liangchiehchen.com/projects/DeepLab.html) | [DeepLab Youtube](https://www.youtube.com/watch?v=b6jhopSMit8)  
+![deep_lab_2017](./images/deep_lab_2017.png)
+
+
+## [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan, Alex Kendall and Roberto Cipolla, 2016)](https://arxiv.org/abs/1511.00561)
 * The motivation:
   - The need of an architecture for road and indoor scene understanding, which is efficient both in terms of memory and computational time.
   - Architectures which store the encoder feature maps in full (FCN, DeconvNet, etc.) perform best but consume more memory during inference time.
