@@ -1,9 +1,11 @@
+
 # Semantic Segmentation
 1. [Evaluation metrics](#evaluation-metrics)
 2. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
     *  __2019__  
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2017__
+	    - [Understanding Convolution for Semantic Segmentation (Panqu Wang et al., 2017)](#understanding-convolution-for-semantic-segmentation-panqu-wang-pengfei-chen-ye-yuan-ding-liu-zehua-huang-xiaodi-hou-and-garrison-cottrell-2017)
 	    - [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen et al., 2017)](#deeplab-semantic-image-segmentation-with-deep-convolutional-nets-atrous-convolution-and-fully-connected-crfs-liang-chieh-chen-george-papandreou-iasonas-kokkinos-kevin-murphy-and-alan-l-yuille-2017)
 	*  __2016__
 	    - [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan et al., 2016)](#segnet-a-deep-convolutional-encoder-decoder-architecture-for-image-segmentation-vijay-badrinarayanan-alex-kendall-and-roberto-cipolla-2016)
@@ -26,6 +28,32 @@
 ## [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa, David Acuna, Varun Jampani and Sanja Fidler, 2019)](https://arxiv.org/abs/1907.05740)
 *
 *
+
+## [Understanding Convolution for Semantic Segmentation (Panqu Wang, Pengfei Chen, Ye Yuan, Ding Liu, Zehua Huang, Xiaodi Hou and Garrison Cottrell, 2017)](https://arxiv.org/abs/1702.08502)
+* Motivation: improve semantic segmentation by manipulating convolution operations.
+* Their work can be seen as an improvement of the [DeepLabv2](https://arxiv.org/abs/1606.00915) baseline.
+* The main contributions of their work: Dense Upsampling Convolution (DUC) and  Hybrid Dilated Convolution (HDC).
+* Dense Upsampling Convolution (DUC):
+  - Avoids to upsample the downsampled predictions with:
+    * bilinear interpolation, which is not learnable and can lose fine details;
+    * deconvolutions/transposed convolutions, which are learnable, but can generate [checkerboard artifacts](https://distill.pub/2016/deconv-checkerboard/).
+  - The key idea of DUC is to transform the whole label map into a smaller label map with multiple channels.
+  - Results in better segmentation, especially for objects that are relatively small.
+  - I think that the main idea of using DUC in a network is similar with the Shift-and-Stitch trick proposed in [OverFeat](https://arxiv.org/abs/1312.6229) paper. I observe 2 differences in their implementations:
+    * Fully convolutional processing of the input, in the case of DUC. Shift-and-Stitch method supposes redundant processing of patches (many forward passes => inefficient) and interlacing of their predictions into a single output.
+    * In the case of Shift-and-Stitch trick we use the same network/parameters for pixel-wise predictions, but DUC learns different filters for every pixel from the output sub-regions.
+* Hybrid Dilated Convolution (HDC):
+    - Alleviates the "gridding pattern" (caused by subsequent layers that have dilation rates with a common factor relationship like 2,4,8 or 2,2,2).
+    - The key idea is to use, for subsequent convolutional layers, dilation rates that does not have a common factor relationships (examples of good consecutive dilation rates: 1,2,3 or 1,2,5).
+    - Proper rates can increase the receptive field and improve the accuracy for relatively big objects.
+* Architecture:
+  - ResNet-101/ResNet-152 + HDC + DUC;
+* State-of-the-art results (in 2017) on the following datasets:
+  - PASCAL VOC 2012 (83.1% mean IoU);
+  - KITTI Road Segmentation (96.41% maxF on URBAN_ROAD scenes);
+  - Cityscapes (80.1% mean IoU).
+* About specific problems (transposed convolutions => checkerboard artifacts, atrous/dilated convolutions => gridding artifacts) of some segmentation models: [Artifacts](https://medium.com/@kangyan.cn/a-peek-at-semantic-segmentation-2018-a7ed168ff73f)  
+![resnet_hdc_duc_2017](./images/resnet_hdc_duc_2017.png)
 
 
 ## [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen, George Papandreou, Iasonas Kokkinos, Kevin Murphy and Alan L. Yuille, 2017)](https://arxiv.org/abs/1606.00915)
