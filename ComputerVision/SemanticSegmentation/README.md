@@ -5,6 +5,7 @@
     *  __2019__  
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2017__
+	    - [Dilated Residual Networks (Fisher Yu et al., 2017)](#dilated-residual-networks-fisher-yu-vladlen-koltun-and-thomas-funkhouser-2017)
 	    - [Understanding Convolution for Semantic Segmentation (Panqu Wang et al., 2017)](#understanding-convolution-for-semantic-segmentation-panqu-wang-pengfei-chen-ye-yuan-ding-liu-zehua-huang-xiaodi-hou-and-garrison-cottrell-2017)
 	    - [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen et al., 2017)](#deeplab-semantic-image-segmentation-with-deep-convolutional-nets-atrous-convolution-and-fully-connected-crfs-liang-chieh-chen-george-papandreou-iasonas-kokkinos-kevin-murphy-and-alan-l-yuille-2017)
 	*  __2016__
@@ -28,6 +29,19 @@
 ## [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa, David Acuna, Varun Jampani and Sanja Fidler, 2019)](https://arxiv.org/abs/1907.05740)
 *
 *
+
+
+## [Dilated Residual Networks (Fisher Yu, Vladlen Koltun and Thomas Funkhouser, 2017)](https://arxiv.org/abs/1705.09914)
+* The key idea of the work is to preserve spatial resolution in convolutional networks for image classification.
+* The authors modify the ResNet architecture in the following way:
+  - replace strided convolutions from block4 and block5 with dilated convolutions (=> higher resolution, same receptive field, same number of parameters);
+  - alleviate the "gridding artifacts" introduced by dilation (=> improved accuracy):
+    * remove first max-pooling layer;
+	* add more conv layers at the end of the network, with progressively lower dilation rates (do not use residual connections in the last layers).
+* The proposed model can be used for image classification, localization and segmentation tasks. It gives better results than the ResNet baseline.
+* They achieve 70.9% mean IoU on Cityscapes validation set.  
+![drn_2017](./images/drn_2017.png)
+
 
 ## [Understanding Convolution for Semantic Segmentation (Panqu Wang, Pengfei Chen, Ye Yuan, Ding Liu, Zehua Huang, Xiaodi Hou and Garrison Cottrell, 2017)](https://arxiv.org/abs/1702.08502)
 * Motivation: improve semantic segmentation by manipulating convolution operations.
