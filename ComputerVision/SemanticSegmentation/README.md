@@ -5,6 +5,7 @@
     *  __2019__  
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2017__
+	    - [Pyramid Scene Parsing Network (Hengshuang Zhao et al., 2017)](#pyramid-scene-parsing-network-hengshuang-zhao-jianping-shi-xiaojuan-qi-xiaogang-wang-and-jiaya-jia-2017)
 	    - [Dilated Residual Networks (Fisher Yu et al., 2017)](#dilated-residual-networks-fisher-yu-vladlen-koltun-and-thomas-funkhouser-2017)
 	    - [Understanding Convolution for Semantic Segmentation (Panqu Wang et al., 2017)](#understanding-convolution-for-semantic-segmentation-panqu-wang-pengfei-chen-ye-yuan-ding-liu-zehua-huang-xiaodi-hou-and-garrison-cottrell-2017)
 	    - [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen et al., 2017)](#deeplab-semantic-image-segmentation-with-deep-convolutional-nets-atrous-convolution-and-fully-connected-crfs-liang-chieh-chen-george-papandreou-iasonas-kokkinos-kevin-murphy-and-alan-l-yuille-2017)
@@ -29,6 +30,20 @@
 ## [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa, David Acuna, Varun Jampani and Sanja Fidler, 2019)](https://arxiv.org/abs/1907.05740)
 *
 *
+
+
+## [Pyramid Scene Parsing Network (Hengshuang Zhao, Jianping Shi, Xiaojuan Qi, Xiaogang Wang and Jiaya Jia, 2017)](https://arxiv.org/abs/1612.01105)
+* They propose the Pyramid Scene Parsing Network (PSPNet), which consists of:
+  - A pre-trained ResNet with dilated convolutions (like [DeepLab](https://arxiv.org/abs/1606.00915) baseline) for feature extraction.
+  - A pyramid pooling module to gather context information. Different levels of the pyramid cover the whole, half and small portions of the image.
+  In this way, the proposed module can collect levels of information that are more representative than global pooling. 
+  - A fusion module, which concatenates the original feature maps (from ResNet) with upsampled feature maps (from the pyramid pooling module) and generates the final prediction map.
+* They also add an auxiliary loss between the end of backbone and pyramid pooling module. This helps the optimization process and improves the final results.
+* State-of-the-art results (in 2017) on the following datasets:
+  - ADE20K (57.21% mean of meanIoU and pixel accuracy);
+  - PASCAL VOC 2012 (85.4% mean IoU);
+  - Cityscapes (80.2% mean IoU).  
+![pspnet_2017](./images/pspnet_2017.png)
 
 
 ## [Dilated Residual Networks (Fisher Yu, Vladlen Koltun and Thomas Funkhouser, 2017)](https://arxiv.org/abs/1705.09914)
