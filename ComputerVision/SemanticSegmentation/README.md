@@ -2,9 +2,12 @@
 # Semantic Segmentation
 1. [Evaluation metrics](#evaluation-metrics)
 2. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
-    *  __2019__  
+    *  __2019__
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
+    *  __2018__
+        - [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2018)](#encoder-decoder-with-atrous-separable-convolution-for-semantic-image-segmentation-liang-chieh-chen-yukun-zhu-george-papandreou-florian-schroff-and-hartwig-adam-2018)
     *  __2017__
+        - [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2017)](#rethinking-atrous-convolution-for-semantic-image-segmentation-liang-chieh-chen-george-papandreou-florian-schroff-and-hartwig-adam-2017)
 	    - [Pyramid Scene Parsing Network (Hengshuang Zhao et al., 2017)](#pyramid-scene-parsing-network-hengshuang-zhao-jianping-shi-xiaojuan-qi-xiaogang-wang-and-jiaya-jia-2017)
 	    - [Dilated Residual Networks (Fisher Yu et al., 2017)](#dilated-residual-networks-fisher-yu-vladlen-koltun-and-thomas-funkhouser-2017)
 	    - [Understanding Convolution for Semantic Segmentation (Panqu Wang et al., 2017)](#understanding-convolution-for-semantic-segmentation-panqu-wang-pengfei-chen-ye-yuan-ding-liu-zehua-huang-xiaodi-hou-and-garrison-cottrell-2017)
@@ -30,6 +33,16 @@
 # Papers related to semantic segmentation
 ## [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa, David Acuna, Varun Jampani and Sanja Fidler, 2019)](https://arxiv.org/abs/1907.05740)
 *
+*
+
+
+## [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff and Hartwig Adam, 2018)](https://arxiv.org/abs/1802.02611)
+* DeepLabv3+
+*
+
+
+## [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen, George Papandreou, Florian Schroff and Hartwig Adam, 2017)](https://arxiv.org/abs/1706.05587)
+* DeepLabv3
 *
 
 
@@ -106,7 +119,9 @@
   - PASCAL VOC 2012 (79.7% mean IoU);
   - PASCAL-Context (45.7% mean IoU);
   - PASCAL-Person-Part (64.94% mean IoU);
-  - Cityscapes (70.4% mean IoU). 
+  - Cityscapes (70.4% mean IoU).
+* DeepLabv1: VGG-16 + dilated convolutions + CRF;
+* DeepLabv2: ResNet-101 + ASPP + CRF;  
 * More info: [DeepLab site](http://liangchiehchen.com/projects/DeepLab.html) | [DeepLab Youtube](https://www.youtube.com/watch?v=b6jhopSMit8)  
 ![deep_lab_2017](./images/deep_lab_2017.png)
 
