@@ -10,6 +10,7 @@
 	    - [Understanding Convolution for Semantic Segmentation (Panqu Wang et al., 2017)](#understanding-convolution-for-semantic-segmentation-panqu-wang-pengfei-chen-ye-yuan-ding-liu-zehua-huang-xiaodi-hou-and-garrison-cottrell-2017)
 	    - [DeepLab: Semantic Image Segmentation with Deep Convolutional Nets, Atrous Convolution, and Fully Connected CRFs (Liang-Chieh Chen et al., 2017)](#deeplab-semantic-image-segmentation-with-deep-convolutional-nets-atrous-convolution-and-fully-connected-crfs-liang-chieh-chen-george-papandreou-iasonas-kokkinos-kevin-murphy-and-alan-l-yuille-2017)
 	*  __2016__
+	    - [Multi-Scale Context Aggregation by Dilated Convolutions (Fisher Yu and Vladlen Koltun, 2016)](#multi-scale-context-aggregation-by-dilated-convolutions-fisher-yu-and-vladlen-koltun-2016)
 	    - [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan et al., 2016)](#segnet-a-deep-convolutional-encoder-decoder-architecture-for-image-segmentation-vijay-badrinarayanan-alex-kendall-and-roberto-cipolla-2016)
 	*  __2015__
 	    - [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger et al., 2015)](#u-net-convolutional-networks-for-biomedical-image-segmentation-olaf-ronneberger-philipp-fischer-and-thomas-brox-2015)
@@ -110,6 +111,22 @@
 ![deep_lab_2017](./images/deep_lab_2017.png)
 
 
+## [Multi-Scale Context Aggregation by Dilated Convolutions (Fisher Yu and Vladlen Koltun, 2016)](https://arxiv.org/abs/1511.07122)
+* The authors propose a context module consisting of dilated convolutions, which aggregates multi-scale contextual information and increases the performance of dense predictions.
+* Dilated convolutions support exponentially expanding receptive field without losing resolution or coverage.
+* Architecture:
+  - Convolutional layers of VGG-16 (pre-trained on ImageNet);
+    * Last 2 pooling and striding layers are removed. Convolutions in all subsequent layers are dilated by a factor of 2 and 4.
+  - Context module;
+    * 8 layers that apply 3x3 convolutions with different dilation factors (1,1,2,4,8,16,1,1).
+* State-of-the-art results (in 2016) on the following datasets:
+  - PASCAL VOC 2012 (75.3% mean IoU);
+  - CamVid (65.3% mean IoU);
+  - KITTI Road Segmentation (59.2% mean IoU);
+  - Cityscapes (67.1% mean IoU).  
+![multi_scale_context_aggregation_2016](./images/multi_scale_context_aggregation_2016.png)
+
+
 ## [SegNet: A Deep Convolutional Encoder-Decoder Architecture for Image Segmentation (Vijay Badrinarayanan, Alex Kendall and Roberto Cipolla, 2016)](https://arxiv.org/abs/1511.00561)
 * The motivation:
   - The need of an architecture for road and indoor scene understanding, which is efficient both in terms of memory and computational time.
@@ -124,7 +141,7 @@
   - CamVid road scene segmentation;
   - SUN RGB-D indoor scene segmentation.
 * More info: [SegNet site](http://mi.eng.cam.ac.uk/projects/segnet/)  
-![seg_net_2015](./images/seg_net_2016.png)
+![seg_net_2016](./images/seg_net_2016.png)
  
 
 ## [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger, Philipp Fischer and Thomas Brox, 2015)](https://arxiv.org/abs/1505.04597)
