@@ -44,16 +44,16 @@
 ## [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen, George Papandreou, Florian Schroff and Hartwig Adam, 2017)](https://arxiv.org/abs/1706.05587)
 * The proposed DeepLabv3 vs DeepLabv1 & DeepLabv2:
   - ASPP is modified:
-    * one 1x1 convolution and three 3x3 convolutions with (6,12,18) rates - all with 256 filters and BatchNorm;
-	* global average pooling to extract image-level features, which contain global context and are upsampled with bilinear interpolation (this is like the SPP 1x1 branch from [PSPNet](https://arxiv.org/abs/1612.01105));
+    * one 1x1 convolution and three 3x3 atrous convolutions with (6,12,18) dilation rates - all with 256 filters and BatchNorm;
+	* global average pooling to extract image-level features (containing global context), which are upsampled with bilinear interpolation (this is like the SPP 1x1 branch from [PSPNet](https://arxiv.org/abs/1612.01105));
 	* resulting features from all branches are concatenated and are followed by 1x1 convolutions for final output.
   - CRF is not used;
   - Training details:
     * larger crop sizes (DeepLabv3: 513x513 vs DeepLabv1&DeepLabv2: 321x321);
 	* upsampling the logits to train on the original ground truth (not on the downsampled ground truth like in DeepLabv1 & DeepLabv2);
 	* details for PASCAL VOC 2012:
-	  - first, train on VOC augmented dataset: on stride 16 final output with BatchNorm and after that on stride 8 final output with frozen BatchNorm;
-	  - second, fine-tune on VOC 2012 trainval set only: on stride 8 final output with frozen BatchNorm;
+	  - first, train on VOC augmented dataset: with BatchNorm, on stride 16 final output and after that, with frozen BatchNorm, on stride 8 final output;
+	  - second, fine-tune on VOC 2012 trainval set only: with frozen BatchNorm, on stride 8 final output;
 	  - duplicate images that contain hard classes in the training set.
 * State-of-the-art results (in 2017) on the following datasets:
   - PASCAL VOC 2012 (85.7% mean IoU);
