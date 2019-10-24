@@ -37,8 +37,19 @@
 
 
 ## [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff and Hartwig Adam, 2018)](https://arxiv.org/abs/1802.02611)
-* DeepLabv3+
-*
+* The proposed DeepLabv3+ is an extension of DeepLabv3. The main contributions:
+  - An effective decoder module is added to refine the segmentation results, especially along object boundaries.
+  - In the Decoder: low-level feature maps (conv2 from encoder) are reduced to 48 feature maps and then concatenated with ASPP output in the same way as in the [U-Net](https://arxiv.org/abs/1505.04597) architecture.
+  - A modified Xception model is used as backbone instead of ResNet and the depthwise separable convolution is applied to both ASPP and decoder modules.
+  Xception itself is an high performance and efficient backbone. This results in a fast and strong encoder-decoder network.
+* Recap:
+  - ASPP: capture contextual information at multiple scales. Atrous convolutions allow to control the density of the encoder features and the size of the receptive field.
+  - Encoder-Decoder structure: obtain sharp object boundaries by gradually recovering the spatial information.
+* Better results are achieved in the case of Cityscapes dataset if the image-level features (from ASPP) are removed.
+* State-of-the-art results (in 2017) on the following datasets:
+  - PASCAL VOC 2012 (87.8%/89.0% mean IoU without/with JFT pre-training);
+  - Cityscapes (82.1% mean IoU).  
+![deeplabv3+_2018](./images/deeplabv3+_2018.png)
 
 
 ## [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen, George Papandreou, Florian Schroff and Hartwig Adam, 2017)](https://arxiv.org/abs/1706.05587)
@@ -56,7 +67,7 @@
 	  - second, fine-tune on VOC 2012 trainval set only: with frozen BatchNorm, on stride 8 final output;
 	  - duplicate images that contain hard classes in the training set.
 * State-of-the-art results (in 2017) on the following datasets:
-  - PASCAL VOC 2012 (85.7% mean IoU);
+  - PASCAL VOC 2012 (85.7%/86.9% mean IoU without/with JFT pre-training);
   - Cityscapes (81.3% mean IoU).
 * A short comparison: [DeepLabv1 vs DeepLabv2 vs DeepLabv3](http://web.eng.tau.ac.il/deep_learn/wp-content/uploads/2017/12/Rethinking-Atrous-Convolution-for-Semantic-Image-Segmentation-1.pdf)  
 ![deeplabv3_2017](./images/deeplabv3_2017.png)
