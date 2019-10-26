@@ -32,8 +32,19 @@
 	  
 # Papers related to semantic segmentation
 ## [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa, David Acuna, Varun Jampani and Sanja Fidler, 2019)](https://arxiv.org/abs/1907.05740)
-*
-*
+* Motivation: color, shape and texture information are processed together inside deep cnns for image segmentation.
+This may not be ideal as they contain different type of information relevant for recognition.
+* The authors introduce a two-stream CNN, called Gated Shape CNN (GSCNN), consisting of:
+  - Regular stream: WideResNet backbone (pre-trained on ImageNet) for semantic segmentation;
+  - Shape stream: a shallow network for semantic boundary prediction;
+  - Fusion module: to combine the information from the regular and shape streams in a multi-scale fashion using an ASPP module.
+* Gated convolutions are used to control the information flow from the regular stream to the shape stream.
+This helps the shape stream to only process relevant features by filtering out the rest.
+* GSCNN:
+  - produces sharper predictions around object boundaries;
+  - achieves significant improvements for smaller objects located further away from the camera.
+* State-of-the-art results (in 2019) on Cityscapes dataset (82.8% mean IoU).  
+![gscnn_2019](./images/gscnn_2019.png)
 
 
 ## [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff and Hartwig Adam, 2018)](https://arxiv.org/abs/1802.02611)
