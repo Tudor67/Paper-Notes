@@ -5,6 +5,7 @@
     *  __2019__
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2018__
+	    - [Dual Attention Network for Scene Segmentation (Jun Fu et al., 2018)](#dual-attention-network-for-scene-segmentation-jun-fu-jing-liu-haijie-tian-yong-li-yongjun-bao-zhiwei-fang-and-hanqing-lu-2018)
         - [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2018)](#encoder-decoder-with-atrous-separable-convolution-for-semantic-image-segmentation-liang-chieh-chen-yukun-zhu-george-papandreou-florian-schroff-and-hartwig-adam-2018)
     *  __2017__
         - [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2017)](#rethinking-atrous-convolution-for-semantic-image-segmentation-liang-chieh-chen-george-papandreou-florian-schroff-and-hartwig-adam-2017)
@@ -45,6 +46,26 @@ This helps the shape stream to only process relevant features by filtering out t
   - achieves significant improvements for smaller objects located further away from the camera.
 * State-of-the-art results (in 2019) on Cityscapes dataset (82.8% mean IoU).  
 ![gscnn_2019](./images/gscnn_2019.png)
+
+
+## [Dual Attention Network for Scene Segmentation (Jun Fu, Jing Liu, Haijie Tian, Yong Li, Yongjun Bao, Zhiwei Fang and Hanqing Lu, 2018)](https://arxiv.org/abs/1809.02983)
+* The authors propose a Dual Attention Network (DANet) to improve scene segmentation results.
+They present dual attention modules, which help to capture global dependencies in the spatial and channel dimensions.
+* Architecture:
+  - ResNet-101 backbone for feature extraction;
+  - Position attention module:
+    * captures clear semantic similarity and long-range relationships;
+    * enhances the discrimination of details;
+    * results in clearer object boundaries.
+  - Channel attention module:
+    * helps to capture context information;
+    * results in improved semantic consistency.
+* State-of-the-art results (in 2018) on the following datasets:
+  - PASCAL VOC 2012 (82.6% mean IoU);
+  - PASCAL Context (52.6% mean IoU);
+  - COCO Stuff (39.7% mean IoU);
+  - Cityscapes (81.5% mean IoU).  
+![danet_2018](./images/danet_2018.png)
 
 
 ## [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff and Hartwig Adam, 2018)](https://arxiv.org/abs/1802.02611)
