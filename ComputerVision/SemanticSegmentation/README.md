@@ -6,7 +6,8 @@
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2018__
 	    - [Dual Attention Network for Scene Segmentation (Jun Fu et al., 2018)](#dual-attention-network-for-scene-segmentation-jun-fu-jing-liu-haijie-tian-yong-li-yongjun-bao-zhiwei-fang-and-hanqing-lu-2018)
-        - [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2018)](#encoder-decoder-with-atrous-separable-convolution-for-semantic-image-segmentation-liang-chieh-chen-yukun-zhu-george-papandreou-florian-schroff-and-hartwig-adam-2018)
+        - [BiSeNet: Bilateral Segmentation Network for Real-time Semantic Segmentation (Changqian Yu et al., 2018)](#bisenet-bilateral-segmentation-network-for-real-time-semantic-segmentation-changqian-yu-jingbo-wang-chao-peng-changxin-gao-gang-yu-and-nong-sang-2018)
+		- [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2018)](#encoder-decoder-with-atrous-separable-convolution-for-semantic-image-segmentation-liang-chieh-chen-yukun-zhu-george-papandreou-florian-schroff-and-hartwig-adam-2018)
     *  __2017__
         - [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2017)](#rethinking-atrous-convolution-for-semantic-image-segmentation-liang-chieh-chen-george-papandreou-florian-schroff-and-hartwig-adam-2017)
 	    - [Pyramid Scene Parsing Network (Hengshuang Zhao et al., 2017)](#pyramid-scene-parsing-network-hengshuang-zhao-jianping-shi-xiaojuan-qi-xiaogang-wang-and-jiaya-jia-2017)
@@ -66,6 +67,28 @@ They present dual attention modules, which help to capture global dependencies i
   - COCO Stuff (39.7% mean IoU);
   - Cityscapes (81.5% mean IoU).  
 ![danet_2018](./images/danet_2018.png)
+
+
+## [BiSeNet: Bilateral Segmentation Network for Real-time Semantic Segmentation (Changqian Yu, Jingbo Wang, Chao Peng, Changxin Gao, Gang Yu and Nong Sang, 2018)](https://arxiv.org/abs/1808.00897)
+* The authors propose a new approach to decouple the function of spatial information and receptive field preservation. 
+* The proposed Bilateral Segmentation Network (BiSeNet) consists of two parts:
+  - Spatial Path: 3 x \[conv (stride=2) + bn + relu\] layers to obtain 1/8 feature maps, which encode rich spatial information (low-level features).
+  - Context Path: Xception39 + Global Average Pooling, which retains the context information (high-level features).
+* For a better accuracy (without loss of speed), 2 extra components are added to the network:
+  - Attention Refinement Module (ARM):
+    * refines the output feature of each stage in the Context Path;
+	* for a feature map z it does the following mapping: z -> z*sigmoid(global pooling (z) + 1x1 conv + bn).
+  - Feature Fusion Module (FFM):
+    * combines the low-level features from Spatial Path with high-level features from Context Path by concatenation;
+	* following an attention mechanism, the concatenated feature maps are re-weighted using global pooling and 1x1 convolutions.
+* Both ARM and FFM are channel-wise attention modules.
+* BiSeNet is very fast, but achieves lower performance compared to non-real-time segmentation algorithms.
+* State-of-the-art results can be obtained with BiSeNet if the Xception39 backbone is replaced with ResNet18 or ResNet101, but in this case speed is slowed down.
+* The results with Xception39 backbone (fast version of BiSeNet):
+  - Cityscapes (68.4% mean IoU at 105 FPS ~ very fast);
+  - CamVid (65.6% mean IoU);
+  - COCO Stuff validation set (22.8% mean IoU).  
+![bisenet_2018](./images/bisenet_2018.png)
 
 
 ## [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff and Hartwig Adam, 2018)](https://arxiv.org/abs/1802.02611)
