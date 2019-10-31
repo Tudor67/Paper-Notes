@@ -7,6 +7,7 @@
     *  __2018__
 	    - [Dual Attention Network for Scene Segmentation (Jun Fu et al., 2018)](#dual-attention-network-for-scene-segmentation-jun-fu-jing-liu-haijie-tian-yong-li-yongjun-bao-zhiwei-fang-and-hanqing-lu-2018)
         - [BiSeNet: Bilateral Segmentation Network for Real-time Semantic Segmentation (Changqian Yu et al., 2018)](#bisenet-bilateral-segmentation-network-for-real-time-semantic-segmentation-changqian-yu-jingbo-wang-chao-peng-changxin-gao-gang-yu-and-nong-sang-2018)
+		- [ICNet for Real-Time Semantic Segmentation on High-Resolution Images (Hengshuang Zhao et al., 2018)](#icnet-for-real-time-semantic-segmentation-on-high-resolution-images-hengshuang-zhao-xiaojuan-qi-xiaoyong-shen-jianping-shi-and-jiaya-jia-2018)
 		- [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2018)](#encoder-decoder-with-atrous-separable-convolution-for-semantic-image-segmentation-liang-chieh-chen-yukun-zhu-george-papandreou-florian-schroff-and-hartwig-adam-2018)
     *  __2017__
         - [Rethinking Atrous Convolution for Semantic Image Segmentation (Liang-Chieh Chen et al., 2017)](#rethinking-atrous-convolution-for-semantic-image-segmentation-liang-chieh-chen-george-papandreou-florian-schroff-and-hartwig-adam-2017)
@@ -89,6 +90,22 @@ They present dual attention modules, which help to capture global dependencies i
   - CamVid (65.6% mean IoU);
   - COCO Stuff validation set (22.8% mean IoU).  
 ![bisenet_2018](./images/bisenet_2018.png)
+
+
+## [ICNet for Real-Time Semantic Segmentation on High-Resolution Images (Hengshuang Zhao, Xiaojuan Qi, Xiaoyong Shen, Jianping Shi and Jiaya Jia, 2018)](https://arxiv.org/abs/1704.08545)
+* The goal: build a fast model that achieves high-quality segmentation results.
+* The proposed Image Cascade Network (ICNet) incorporates:
+  - Multi-resolution branches:
+    * (1/8 downsampled input) branch: PSPNet50 (high-level features);
+	* (1/4 downsampled input) branch: 17 layers of PSPNet50;
+	* (1 original/initial input) branch: 3 conv layers (low-level features);
+  - Cascade feature fusion unit:
+    * combines feature maps from 2 different branches.
+* Decent results (in 2017-2018) with real-time inference (on a single GPU card) on the following datasets:
+  - Cityscapes (69.5%/70.6% mean IoU when trained with fine/(fine + coarse) data, both at 30.3 FPS (~ pretty fast for 1024x2048 inputs));
+  - CamVid (67.1% mean IoU at 27.8 FPS);
+  - COCO-Stuff (29.1% mean IoU at 35.7 FPS).  
+![icnet_2018](./images/icnet_2018.png)
 
 
 ## [Encoder-Decoder with Atrous Separable Convolution for Semantic Image Segmentation (Liang-Chieh Chen, Yukun Zhu, George Papandreou, Florian Schroff and Hartwig Adam, 2018)](https://arxiv.org/abs/1802.02611)
