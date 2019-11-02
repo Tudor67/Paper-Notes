@@ -1,7 +1,7 @@
-
 # Semantic Segmentation
-1. [Evaluation metrics](#evaluation-metrics)
-2. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
+1. [Problem formulation](#problem-formulation)
+2. [Evaluation metrics](#evaluation-metrics)
+3. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
     *  __2019__
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2018__
@@ -22,17 +22,36 @@
 	    - [U-Net: Convolutional Networks for Biomedical Image Segmentation (Olaf Ronneberger et al., 2015)](#u-net-convolutional-networks-for-biomedical-image-segmentation-olaf-ronneberger-philipp-fischer-and-thomas-brox-2015)
         - [Fully Convolutional Networks for Semantic Segmentation (Jonathan Long et al., 2015)](#fully-convolutional-networks-for-semantic-segmentation-jonathan-long-evan-shelhamer-and-trevor-darrell-2015)
 
-		
+
+# Problem formulation
+Semantic image segmentation task:
+- predict the class (e.g., cat, dog, car, etc.) of each pixel in a given input image;
+- can be seen as a classification task for each pixel of a given input image;
+- there is no distinction among separate instances of the same class (i.e., they share the same label);
+- includes datasets that contain things (e.g., person, bus, dog) and stuff (e.g., street, sky).  
+![semantic_segmentation_task](./images/semantic_segmentation_task.png)  
+[Image source](https://luozm.github.io/cv-tasks)
+
+
 # Evaluation metrics
+* __Pixel Accuracy__:
+  - represents the percent of pixels in the image that are correctly classified;
+  - is reported for each class separately as well as globally across all classes;
+  - pixel accuracy provides misleading results when the class representation is small within the image (class imbalance issue).
 * __Mean Intersection over Union (mIoU)/Jaccard Index__:
+  - the IoU score (TP/(TP+FP+FN)) is calculated for each class separately and then averaged over all classes to provide a global, mean IoU score for a given prediction;
+  - each time IoU is computed, only pixels from a fixed class are taken into account;
   - more sensitive to outliers (FPs);
-  - favors region smoothness and does not evaluate boundary accuracy like Boundary F1-measure;
+  - favors region smoothness and does not evaluate boundary accuracy like Boundary F1-measure.
 * __Dice Coefficient (F1-measure)__:
+  - 2 * Area of Intersection divided by the total number of pixels (from a fixed class) in both images: 2*TP/(2*TP+FP+FN);
   - less sensitive to outliers (FPs);
 * __Boundary F1-measure (BF)__:
   - measures how close the predicted boundary of an object matches the ground truth boundary.
- 
-	  
+
+More info: [evaluation metrics for semantic segmentation](https://www.mathworks.com/help/vision/ref/evaluatesemanticsegmentation.html)
+
+
 # Papers related to semantic segmentation
 ## [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa, David Acuna, Varun Jampani and Sanja Fidler, 2019)](https://arxiv.org/abs/1907.05740)
 * Motivation: color, shape and texture information are processed together inside deep cnns for image segmentation.
