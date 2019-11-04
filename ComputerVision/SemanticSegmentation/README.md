@@ -1,7 +1,8 @@
 # Semantic Segmentation
 1. [Problem formulation](#problem-formulation)
 2. [Evaluation metrics](#evaluation-metrics)
-3. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
+3. [Datasets](#datasets)
+4. [Papers related to semantic segmentation](#papers-related-to-semantic-segmentation)  
     *  __2019__
         - [Gated-SCNN: Gated Shape CNNs for Semantic Segmentation (Towaki Takikawa et al., 2019)](#gated-scnn-gated-shape-cnns-for-semantic-segmentation-towaki-takikawa-david-acuna-varun-jampani-and-sanja-fidler-2019)
     *  __2018__
@@ -50,6 +51,58 @@ Semantic image segmentation task:
   - measures how close the predicted boundary of an object matches the ground truth boundary.
 
 More info: [evaluation metrics for semantic segmentation](https://www.mathworks.com/help/vision/ref/evaluatesemanticsegmentation.html)
+
+
+# Datasets
+## PASCAL VOC 2012
+* http://host.robots.ox.ac.uk/pascal/VOC/voc2012/
+* images (trainaug/train/val/test): 10,582/1,464/1,449/1,456;
+* 20 foreground object classes and 1 background class;  
+![pascal_voc_2012_dataset](./images/pascal_voc_2012_dataset.png)
+
+
+## PASCAL-Context
+* https://cs.stanford.edu/~roozbeh/pascal-context/
+* this is a set of additional annotations for PASCAL VOC 2010;
+* it provides annotations for the whole scene: things (keyboard, fork, etc.), stuff (sky, water, etc.) and hybrids (road);
+* images (train-val/test): 10,103/9,637;
+* more than 400 labels, but models are usually evaluated on the most frequent 59 classes + 1 background category;  
+![pascal_context_dataset](./images/pascal_context_dataset.png)
+
+
+## Cityscapes
+* https://arxiv.org/pdf/1604.01685.pdf
+* large urban street scene dataset from a car perspective;
+* 5,000 images with fine annotations and 20,000 images with coarse annotations;
+* fine annotated images (train/val/test): 2,975/500/1,525;
+* resolution: 2048x1024;
+* 19 classes: road, building, sky, person, car, bicycle, etc.  
+![cityscapes_dataset](./images/cityscapes_dataset.png)
+
+
+## CamVid
+* http://www0.cs.ucl.ac.uk/staff/G.Brostow/papers/Brostow_2009-PRL.pdf
+* street scene dataset from a car perspective;
+* 701 images (train/val/test): 367/101/233;
+* resolution: 960x720;
+* 32 initial classes grouped into 11 larger classes: road, sky, tree, pedestrian, car, etc.  
+![camvid_dataset](./images/camvid_dataset.png)
+
+
+## COCO-Stuff
+* https://github.com/nightrome/cocostuff
+* http://openaccess.thecvf.com/content_cvpr_2018/html/Caesar_COCO-Stuff_Thing_and_CVPR_2018_paper.html
+* an extension of COCO 2017 dataset with pixel-wise annotations for 91 stuff classes;
+* 80 thing classes (car, person, etc.), 91 stuff classes (sky, water, road, grass, etc.) and 1 class "unlabeled";
+* images (train/val/test-dev/test-challenge): 118,000/5,000/20,000/20,000;  
+![coco_stuff_dataset](./images/coco_stuff_dataset.png)
+
+
+## ADE20K
+* https://arxiv.org/pdf/1608.05442.pdf
+* images (train/val/test): 20,210/2,000/3,000;
+* 3169 class labels: 2693 object and stuff classes + 476 object part classes;  
+![ade20k_dataset](./images/ade20k_dataset.png)
 
 
 # Papers related to semantic segmentation
