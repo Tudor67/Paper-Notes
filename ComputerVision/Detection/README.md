@@ -57,7 +57,7 @@
   1. Extract ~2000 region proposals using selective search method;
   2. Compute features for each proposal using a large CNN (AlexNet);
   3. Classify each region using class-specific linear SVMs;
-  4.  Apply class-specific bounding box regressors on each detection to improve the localization performance.
+  4. Apply class-specific bounding box regressors on each detection to improve the localization performance.
 * Training:
   1. Supervised pre-training on ILSVRC2012 classification dataset;
   2. Domain-specific fine-tuning (only on warped region proposals):
@@ -69,14 +69,14 @@
       * Extract features from the fine-tuned CNN and train one linear SVM per class;
 	  * The positive and negative examples are defined differently at this stage (compared to fine-tuning):
 	      - Only the GT bounding boxes are positive examples for their respective classes (== 1.0 IoU);
-		  - proposals with < 0.3 IoU overlap with all instances of a class are negative examples for that class;
-		  - proposals with IoU in [0.3, 1.0) are ignored.
-	  * For PASCAL VOC datasets, adopt standard hard negative mining for a faster convergence (=> mAP stop increasing after only a single pass over all images).
+		  - Proposals with < 0.3 IoU overlap with all instances of a class are negative examples for that class;
+		  - Proposals with IoU in [0.3, 1.0) are ignored.
+	  * For PASCAL VOC datasets, adopt standard hard negative mining for a faster convergence (=> mAP stops increasing after only a single pass over all images).
   4. Bounding box regression:
       * Train a linear regression model (for each class separately) to predict a new detection window given the predicted bounding box and its pool5 features;
       * This improves the localization performance of the model.
   - Different definitions of positives and negatives in fine-tuning and SVM training allow:
-      * at fine-tuning stage: to create more positive examples (x30) => a larger dataset => avoid overfitting, but the network is not fine-tuned for precise localization;
+      * at fine-tuning stage: to create more positive examples (x30) => a larger dataset => avoids overfitting, but the network is not fine-tuned for precise localization;
 	  * at SVM training stage: to emphasize precise localization.
 * Test-time detection:
   1. Use selective search on the test image to extract ~2000 region proposals;
@@ -89,9 +89,11 @@
 	  * NMS removes duplicates and false positives.
 * Problems of the proposed R-CNN:
   - Training is a slow multi-stage process;
-  - Inference is very slow: 47s/image when VGG16 is used for feature extraction.
+  - Inference is very slow: 47s/image when VGG16 is used for feature extraction;
+  - Region proposals are category-independent (the generation method is fixed and cannot be adapted for specific domains).
 * State-of-the-art results (in 2014) on the following datasets:
   - PASCAL VOC 2012 (53.3% mAP);
   - ILSVRC2013 (31.4% mAP).  
-![rcnn_2014](./images/rcnn_2014.png)
+![rcnn_2014](./images/rcnn_2014.png)  
+[Image source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf)
 
