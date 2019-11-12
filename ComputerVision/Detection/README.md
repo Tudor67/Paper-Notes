@@ -1,4 +1,3 @@
-
 # Detection
 1. [Papers related to object detection](#papers-related-to-object-detection)  
     *  __2018__
@@ -48,8 +47,41 @@
 
 
 ## [Fast R-CNN (Ross Girshick, 2015)](https://arxiv.org/abs/1504.08083)
-*
-*
+* The proposed Fast R-CNN method can be described in the following way.  
+For a given input image and a set of object proposals, the detection algorithm consists of the next steps:
+  1. Feature extraction for the entire input image using the convolutional part (conv-relu-maxpool layers) of a CNN (VGG16, pre-trained on ImageNet);
+      - Output: feature maps for the input image;
+  2. For each object proposal, a region of interest (RoI) pooling layer extracts a fixed-length feature vector from the feature maps (computed at previous step);
+      - RoI pooling layer uses max-pooling to convert features inside any valid RoI into a small feature map with a fixed size H*W (7x7 in case of VGG16, to be compatible with the first FC layer);
+	  - H and W are independent of any particular RoI;
+	  - We can apply this operation/layer to regions with variable sizes and map them to feature maps with a fixed size.   
+	  This allows a fully convolutional processing of images and region proposals with variable sizes.
+  3. Each feature vector is fed into a sequence of FC layers that branch into 2 output layers and produce:
+      * Softmax probabilities for k object classes + 1 "background" class;
+	  * Per-class bounding-box regression offsets (4 values for each bounding box).
+* Advantages of Fast R-CNN:
+  - Fast training and inference;
+      * When VGG16 is used as feature extractor (in both R-CNN and Fast R-CNN), Fast R-CNN is 9x faster during the training stage and 213x faster at test-time.
+	  * Details:
+	      - R-CNN is slow because it performs a CNN forward pass for each object proposal, without sharing computation.
+	      - Fast R-CNN is fast because it performs a single forward pass for all object proposals from an image.
+		  Feature extraction for each region proposal represents a simple projection of RoI in the computed feature maps.
+  - Higher detection quality (mAP) than R-CNN and SPPnet;
+  - Training is single-stage, using a multi-task loss;
+      * Multi-task loss for classification of object proposals and refinement of their spatial locations.
+  - Training can update all network layers;
+  - No disk storage is required for feature caching.
+* Training details:
+  - Mini-batches of size 128 (2 random images x 64 region proposals from each image);
+  - 25%/75% positive/negative examples in a mini-batch;
+      * Positive examples: proposals with >= 0.5 IoU with a ground-truth bounding box;
+	  * Negative examples: proposals with IoU in [0.1, 0.5);
+  - Only layers from conv3_1 and up are fine-tuned (when VGG16 is used).
+* State-of-the-art results (in 2015) on the following datasets:
+  - PASCAL VOC 2012 (65.7%/68.4% mAP with VOC12/(VOC07+VOC12) train set);
+  - MS COCO (35.9% PASCAL-style mAP or 19.7% COCO-style AP).  
+![fast_rcnn_2015](./images/fast_rcnn_2015.png)  
+[Image source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf)
 
 
 ## [Rich feature hierarchies for accurate object detection and semantic segmentation (Ross Girshick, Jeff Donahue, Trevor Darrell and Jitendra Malik, 2014)](https://arxiv.org/abs/1311.2524)
