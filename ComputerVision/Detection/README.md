@@ -58,22 +58,22 @@
   - The idea of using anchors avoids pyramids of images/feature maps, filters with multiple scales/sizes and better handles (needs less memory & is faster) the scale variance issue.
   - For each sliding-window location, RPN simultaneously predicts multiple region proposals.
   - The k=9 (scale x aspect ratio = {128^2, 256^2, 512^2} x {1:1, 1:2, 2:1}) proposals are parameterized relatively to k reference boxes (==anchors).
-  - For a conv feature map of a size W*H (typically ~2400), there are W*H*k anchors in total.
+  - For a conv feature map of a size W\*H (typically ~2400), there are W\*H\*k anchors in total.
   - The design of multi-scale anchors is a key component for sharing features without extra cost for addressing scales.
 * RPN training:
   - Anchors:
 	  * Positive examples:
 		  1. anchor/anchors with the highest IoU overlap with a GT box;
-		  2. an anchor that has an IoU overlap higher than 0.7 with any GT box;
+		  2. anchors that have an IoU overlap higher than 0.7 with any GT box;
 	  * Negative examples:
 		  1. non-positive boxes with IoU lower than 0.3 for all GT boxes;
 	  * Anchors that are neither positive nor negative do not contribute to the training objective.
-  - RPN is trained to minimize an objective function following the multi-task loss in Fast R-CNN:
+  - RPN is trained to minimize an objective function following the multi-task loss (similar to Fast R-CNN):
       * Classification of object proposals (object versus not object);
 	  * Refinement of their spatial locations with k different bounding-box regressors (k=9 is the number of anchors for each location).  
 	  Remember: a proposal is associated with k=9 anchor boxes.
   - Each mini-batch arises from a single image and contains 256 randomly sampled anchors (128:128 positive/negative examples).
-  - The shared conv layers are initialized by pre-training a model on ImageNet classification (ZF net & VGG16).
+  - The shared conv layers are initialized by pre-training a model on ImageNet classification (ZF net or VGG16).
 * RPN & Fast R-CNN training (4-step alternating training):
   1. RPN:
       - Initialize RPN with a model pre-trained on ImageNet;
@@ -90,13 +90,15 @@
   4. Fast R-CNN:
       - Keeping the shared conv layers, fine-tune the unique layers of Fast R-CNN;
 	  - At this stage, both networks share the same conv layers and form a unified network.
-* The number of RPN proposals is reduced with non-maximum suppression (NMS, thr=0.7) based on their classification score (object versus not object).
+* The number of RPN proposals is reduced with non-maximum suppression (NMS, thr=0.7) based on their classification scores (object versus not object).
 * After NMS, top-N ranked proposals are used for detection:
   - 2000 RPN proposals during training;
   - a smaller number (300 is a good choice for PASCAL VOC) of proposals at test-time.
 * State-of-the-art results (in 2015) on the following datasets:
   - PASCAL VOC 2012 (67.0%/70.4%/75.9% mAP with VOC12/(VOC07+VOC12)/(COCO+VOC07+VOC12) train set) with VGG16 backbone (5fps);
-  - MS COCO (42.7% PASCAL-style mAP or 21.9% COCO-style AP).  
+  - MS COCO (42.7% PASCAL-style mAP or 21.9% COCO-style AP).
+* More info: [Faster R-CNN (towards-data-science)](https://towardsdatascience.com/faster-r-cnn-for-object-detection-a-technical-summary-474c5b857b46) | 
+[Experiments & results](https://www.youtube.com/watch?v=306ieamtvGM&list=PLkRkKTC6HZMzp28TxR_fJYZ-K8Yu3EQw0&index=6)  
 ![faster_rcnn_2015](./images/faster_rcnn_2015.png)  
 [Image source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf)
 
@@ -134,8 +136,10 @@ For a given input image and a set of object proposals, the detection algorithm c
   - Only layers from conv3_1 and up are fine-tuned (when VGG16 is used).
 * State-of-the-art results (in 2015) on the following datasets:
   - PASCAL VOC 2012 (65.7%/68.4% mAP with VOC12/(VOC07+VOC12) train set);
-  - MS COCO (35.9% PASCAL-style mAP or 19.7% COCO-style AP).  
+  - MS COCO (35.9% PASCAL-style mAP or 19.7% COCO-style AP).
+* More info: [Fast R-CNN (towards-data-science)](https://towardsdatascience.com/fast-r-cnn-for-object-detection-a-technical-summary-a0ff94faa022)  
 ![fast_rcnn_2015](./images/fast_rcnn_2015.png)  
+![fast_rcnn_roi_pooling_2015](./images/fast_rcnn_roi_pooling_2015.png)  
 [Image source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf)
 
 
@@ -180,7 +184,8 @@ For a given input image and a set of object proposals, the detection algorithm c
   - Region proposals are category-independent (the generation method is fixed and cannot be adapted for specific domains).
 * State-of-the-art results (in 2014) on the following datasets:
   - PASCAL VOC 2012 (53.3% mAP);
-  - ILSVRC2013 (31.4% mAP).  
+  - ILSVRC2013 (31.4% mAP).
+* More info: [R-CNN (towards-data-science)](https://towardsdatascience.com/r-cnn-for-object-detection-a-technical-summary-9e7bfa8a557c)  
 ![rcnn_2014](./images/rcnn_2014.png)  
 [Image source](http://cs231n.stanford.edu/slides/2017/cs231n_2017_lecture11.pdf)
 
