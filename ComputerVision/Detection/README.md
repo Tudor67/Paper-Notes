@@ -37,8 +37,50 @@
 
 
 ## [You Only Look Once: Unified, Real-Time Object Detection (Joseph Redmon, Santosh Divvala, Ross Girshick and Ali Farhadi, 2016)](https://arxiv.org/abs/1506.02640)
-*
-*
+* The authors reframe object detection as a single regression problem from image pixels to bounding box coordinates and class probabilities.
+* Using the proposed system, you only look once (YOLO) at an image to predict what objects are present and where they are.
+* YOLO system:
+  1. Divide the 448x448 input image into an S x S grid (S=7 for PASCAL VOC);
+      - if the center of an object falls into a grid cell, that grid cell is responsible for detecting that object;
+  2. Each grid cell predicts B (B=2 for PASCAL VOC) bounding boxes and confidence scores for those boxes;
+	  - the network uses features from the entire image to predict each bounding box;
+	  - each bounding box consists of 5 predictions: x, y, w, h and confidence;
+	  - (x, y) represents the center of the box relative to the bounds of the grid cell (=> bounded between 0 and 1);
+	  - width and height (w, h) are predicted relative to the whole image: values in the range (0, 1);
+	  - the confidence prediction represents the IoU between the predicted box and any GT box: P(Object) * IoU(Pred with any GT);
+  3. Each grid cell also predicts C conditional class probabilities: P(Class_i|Object);
+      - these probabilities are conditioned on the grid cell containing an object;
+	  - the model predicts only a set of class probabilities per grid cell, regardless of the number of boxes per grid cell B;
+  4. At test time, the class specific confidence scores for each box is the product between conditional class probabilities and the individual box confidence predictions;
+      - these scores encode both the probability of that class appearing in the box and how well the predicted box fits the object;
+	  - non-maximal suppression (NMS) is used at test time to remove duplicates.
+* Architecture:
+  - ConvNet similar with GoogLeNet (inception modules replaced by 1x1 convolutions followed by 3x3 convolutions);
+  - Conv layers are pre-trained on the ImageNet classification task (only first 20 conv layers + GAP layers);
+* Training:
+  - multi-part loss function which minimizes localization and classification errors;
+  - they use sum-squared error for all components of the loss => easy to optimize but does not perfectly align with maximizing AP;
+* Advantages of YOLO:
+  - simple:
+      * detection task is framed as a single regression problem => simple pipeline;
+  - extremely fast:
+      * it processes images in real-time (Base YOLO: 45 fps, Fast YOLO: 155 fps);
+  - global context for each prediction:
+      * it sees the entire image during training/test time, so it implicitly encodes context information about classes as well as their appearance;
+	  * the network uses features from the entire image to predict each bounding box;
+	  * the global context help YOLO to make less than half the number of background errors compared to Fast R-CNN;
+  - generalizable representations of objects:
+      * When trained on natural images and tested on artwork, YOLO outperforms top detection methods (like DPM and R-CNN) by a wide margin.
+* Disadvantages of YOLO:
+  - a smaller accuracy compared to the state-of-the-art methods:
+      * struggles to precisely localize some objects, especially small ones.
+  - YOLO learns to predict bounding boxes from data:
+      * as a results, it struggles to generalize to objects in new or unusual aspect ratios or configurations.
+* State-of-the-art results (in real-time object detection, 45 fps, 2015-2016) on the following datasets:
+  - PASCAL VOC 2012 (57.9%mAP);
+  - Picasso (53.3% AP on person class, trained on VOC 2012);
+  - People-Art (45% AP on person class, trained on VOC 2010).  
+![yolo_2016](./images/yolo_2016.png)
 
 
 ## [Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks (Shaoqing Ren, Kaiming He, Ross Girshick and Jian Sun, 2015)](https://arxiv.org/abs/1506.01497)
