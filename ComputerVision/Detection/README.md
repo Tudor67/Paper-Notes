@@ -32,8 +32,68 @@
 
 
 ## [SSD: Single Shot MultiBox Detector (Wei Liu, Dragomir Anguelov, Dumitru Erhan, Christian Szegedy, Scott Reed, Cheng-Yang Fu and Alexander C. Berg, 2016)](https://arxiv.org/abs/1512.02325)
-*
-*
+* The authors propose a single deep neural network for object detection, called SSD (Single Shot MultiBox Detector).
+* SSD is simpler, faster and more accurate than previous state-of-the-art models (YOLO and Faster R-CNN). 
+* SSD framework:
+  1. Resize the input image to a fixed size (300x300 or 512x512);
+  2. Feed-forward the image through the network;
+  3. For the last convolutional layers (which contain feature maps of different resolution):
+      * For each location of a feature map (feature map size: m\*n):
+	      - Apply _K_ conv filters (size: 3x3):
+		      * each conv filter predicts _C_ class scores and _4_ offsets relative to the original default box shape;
+			  * this results in (_C_+_4_)_K_ outputs for each location in the feature map;
+		  - Details: a set of _K_ default bounding boxes are associated with each feature map cell/location:
+		      * _K_ is the number of default boxes in a feature map location;
+			  * _K_=4 for feature maps with high resolution and _K_=6 for those with low resolution;
+			  * the main idea is to use various default boxes (i.e., with different scales and aspect ratios) to better handle detection of objects with multiple sizes;
+			  * default box from SSD = anchor box from Faster R-CNN, but applied to feature maps from different layers;
+  4. Filter out the predicted boxes (8732/24564 for SSD300/SSD512) with a confidence threshold of 0.01;
+  5. Apply non-maximum suppression (NMS, thr=0.45) per class and keep the top 200 detections.
+* Architecture:
+  - (Base network) ImageNet pre-trained VGG16, with the following modifications (like in DeepLab-LargeFOV):
+      * all dropout and classification (fc8) layers are removed;
+	  * fc6 and fc7 layers -> conv layers;
+	  * pool5 2x2-s2 -> pool5 3x3-s1;
+	  * dilated convolutions are used in the last conv layers;
+  - (Auxiliary layers) Several feature layers are added to the end of the base network.
+* Training:
+  - The loss function is a weighted sum of the localization loss and the confidence loss:
+      * Localization loss: Smooth L1 between the predicted box and the GT box parameters;
+		  - Similar to R-CNN, Fast R-CNN and Faster R-CNN, they regress the offsets for the center (cx, cy) of the default bounding box and for its width (w) and height (h);
+	  * Confidence loss: Softmax.
+* Speed improvement comes from:
+  - elimination of bounding box proposals and the subsequent pixel or feature resampling stage (compared to R-CNN, Fast R-CNN & Faster R-CNN);
+  - using relatively low resolution input;
+* Accuracy improvement comes from using:
+  - small conv filters to predict object categories and offsets in bounding box locations;
+  - separate predictors/filters for different aspect ratio detections;
+  - default boxes of different scales on different output layers (feature maps with various resolutions);
+* Error analysis on PASCAL VOC 2007. SSD:
+  - (+) performs really well on large objects;
+  - (+) is very robust to different object aspect ratios;
+      * SSD is trained with default boxes of various aspect ratios per feature map location;
+  - (+) has less localization error (compared to R-CNN);
+      * SSD directly learns to regress the object shape and classify object categories instead of using two decoupled steps;
+  - (-) has more confusions with similar object categories (especially for animals);
+      * SSD shares locations for multiple categories;
+  - (-) is very sensitive to the bounding box size: much worse performance on smaller objects than bigger objects;
+      * small objects may not have any information at the very top layers;
+	  * this can be slightly solved by increasing the input size.
+* Model analysis for SSD:
+  - Data augmentation is crucial;
+      * a more extensive strategy (compared to Fast R-CNN and Faster R-CNN) can improve 8.8% mAP (from 65.5% to 74.3%);
+  - More default box shapes is better;
+      * using a variety of default box shapes seems to make the task of predicting boxes easier for the network;
+  - Atrous is faster;
+  - Multiple output layers at different resolutions is better;
+      * it is critical to spread boxes of different scales over different layers.
+* State-of-the-art results (in real-time object detection, SSD300: 59 fps, SSD512: 22 fps, 2016-2017):
+  - PASCAL VOC 2012 (SSD300: 75.8%/79.3% mAP with (VOC07+VOC12)/(COCO+VOC07+VOC12) train set, 59 fps);
+  - PASCAL VOC 2012 (SSD512: 78.5%/82.2% mAP with (VOC07+VOC12)/(COCO+VOC07+VOC12) train set, 22 fps);
+  - COCO test-dev2015 (SSD300: 25.1%/43.1% COCO-style/PASCAL-style mAP, 59 fps);
+  - COCO test-dev2015 (SSD512: 28.8%/48.5% COCO-style/PASCAL-style mAP, 22 fps);
+  - ILSVRC2013 (SSD300: 43.4% mAP, 59 fps).  
+![ssd_2016](./images/ssd_2016.png)
 
 
 ## [You Only Look Once: Unified, Real-Time Object Detection (Joseph Redmon, Santosh Divvala, Ross Girshick and Ali Farhadi, 2016)](https://arxiv.org/abs/1506.02640)
@@ -77,7 +137,7 @@
   - YOLO learns to predict bounding boxes from data:
       * as a results, it struggles to generalize to objects in new or unusual aspect ratios or configurations.
 * State-of-the-art results (in real-time object detection, 45 fps, 2015-2016) on the following datasets:
-  - PASCAL VOC 2012 (57.9%mAP);
+  - PASCAL VOC 2012 (57.9% mAP);
   - Picasso (53.3% AP on person class, trained on VOC 2012);
   - People-Art (45% AP on person class, trained on VOC 2010).  
 ![yolo_2016](./images/yolo_2016.png)
